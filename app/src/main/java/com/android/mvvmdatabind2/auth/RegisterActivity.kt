@@ -30,11 +30,15 @@ class RegisterActivity : AppCompatActivity() {
         factory= AuthViewModelFactory(authRepository)
         viewModel= ViewModelProviders.of(this,factory).get(AuthViewModel::class.java)
 
-        DataBindingUtil.setContentView<ActivityRegisterBinding>(this,R.layout.activity_register)
+        val binding=DataBindingUtil.setContentView<ActivityRegisterBinding>(this,R.layout.activity_register)
             .apply {
                 this.setLifecycleOwner(this@RegisterActivity)
                 this.viewmodel=viewModel
             }
+
+        binding.txtReg.setOnClickListener {
+            Intent(this,LoginActivity::class.java).also { startActivity(it) }
+        }
     }
     override fun onStart() {
         super.onStart()

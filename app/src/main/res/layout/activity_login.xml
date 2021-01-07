@@ -50,5 +50,15 @@
             android:layout_marginTop="60dp"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/txt_Log"
+            android:layout_gravity="center"
+            android:text="@string/dont_have_an_account_sign_up"
+            android:textSize="11sp"
+            android:layout_marginTop="20dp"/>
     </LinearLayout>
 </layout>

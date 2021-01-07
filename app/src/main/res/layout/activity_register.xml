@@ -50,6 +50,16 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="40dp"
-            android:text="@string/sign_in" />
+            android:text="@string/sign_up" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/txt_Reg"
+            android:layout_gravity="center"
+            android:text="@string/already_have_an_account_sign_in"
+            android:textSize="11sp"
+            android:layout_marginTop="20dp"/>
     </LinearLayout>
 </layout>

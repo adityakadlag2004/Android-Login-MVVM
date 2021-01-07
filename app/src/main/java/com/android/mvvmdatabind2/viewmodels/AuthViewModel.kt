@@ -12,10 +12,9 @@ class AuthViewModel(
     private val repository: AuthRepository
 ) :ViewModel() {
 
-    @Bindable
     val email:MutableLiveData<String> = MutableLiveData()
 
-    @Bindable
+
     val password:MutableLiveData<String> = MutableLiveData()
 
     fun login() = CoroutineScope(IO).launch {
