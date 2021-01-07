@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/email_edit_log"
             android:hint="@string/email"
+            android:text="@={viewModel.email}"
             android:inputType="textEmailAddress"
             android:autofillHints="@string/email"
             android:layout_marginTop="60dp"
@@ -34,6 +35,7 @@
             android:id="@+id/password_edit_log"
             android:hint="@string/password"
             android:inputType="textPassword"
+            android:text="@={viewModel.password}"
             android:autofillHints="@string/password"
             android:layout_marginTop="60dp"
             android:layout_marginStart="40dp"
@@ -44,6 +46,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btn_log"
             android:text="@string/sign_in"
+            android:onClick="@{()-> viewModel.login()}"
             android:layout_marginTop="60dp"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"/>

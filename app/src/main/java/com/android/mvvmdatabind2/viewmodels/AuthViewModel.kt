@@ -1,5 +1,6 @@
 package com.android.mvvmdatabind2.viewmodels
 
+import androidx.databinding.Bindable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.mvvmdatabind2.repository.AuthRepository
@@ -11,15 +12,17 @@ class AuthViewModel(
     private val repository: AuthRepository
 ) :ViewModel() {
 
-    val email:String?=null
+    @Bindable
+    val email:MutableLiveData<String> = MutableLiveData()
 
-    val password:String?=null
+    @Bindable
+    val password:MutableLiveData<String> = MutableLiveData()
 
     fun login() = CoroutineScope(IO).launch {
-        repository.login(email.toString(),password.toString())
+        repository.login(email.value.toString(),password.value.toString())
     }
 
     fun register() = CoroutineScope(IO).launch {
-        repository.register(email.toString(),password.toString())
+        repository.register(email.value.toString(),password.value.toString())
     }
 }
