@@ -30,9 +30,10 @@ class RegisterActivity : AppCompatActivity() {
         factory= AuthViewModelFactory(authRepository)
         viewModel= ViewModelProviders.of(this,factory).get(AuthViewModel::class.java)
 
-        val binding=DataBindingUtil.setContentView<ActivityRegisterBinding>(this,R.layout.activity_register)
+        val binding=DataBindingUtil
+            .setContentView<ActivityRegisterBinding>(this,R.layout.activity_register)
             .apply {
-                this.setLifecycleOwner(this@RegisterActivity)
+                this.lifecycleOwner = this@RegisterActivity
                 this.viewmodel=viewModel
             }
 

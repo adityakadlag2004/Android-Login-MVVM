@@ -31,10 +31,11 @@ class LoginActivity : AppCompatActivity() {
         factory= AuthViewModelFactory(authRepository)
         viewModel= ViewModelProviders.of(this,factory).get(AuthViewModel::class.java)
 
-        val binding=DataBindingUtil.setContentView<ActivityLoginBinding>(this,R.layout.activity_login)
+        val binding=DataBindingUtil
+            .setContentView<ActivityLoginBinding>(this,R.layout.activity_login)
             .apply {
-                this.setLifecycleOwner(this@LoginActivity)
-                this.viewModel=viewModel
+                this.lifecycleOwner = this@LoginActivity
+                this.viewmodel=viewModel
             }
 
         binding.txtLog.setOnClickListener {
