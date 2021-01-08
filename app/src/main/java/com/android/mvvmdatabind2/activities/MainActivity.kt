@@ -2,19 +2,25 @@ package com.android.mvvmdatabind2.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.Observer
+import androidx.lifecycle.asLiveData
 import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.auth.LoginActivity
+import com.android.mvvmdatabind2.repository.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
+    private val TAG = "MainActivity"
     private lateinit var mAuth: FirebaseAuth
     private var currentuser: FirebaseUser? = null
+    private val repository=AuthRepository(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,6 +28,14 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         mAuth = FirebaseAuth.getInstance()
+
+        repository.emailFlow.asLiveData().observe(this, Observer {
+            email_id.text = it.toString()
+
+        })
+        repository.displayname.asLiveData().observe(this, Observer {
+            display_name.text=it.toString()
+        })
 
         hello.setOnClickListener {
             mAuth.signOut()
@@ -42,7 +56,8 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         } else {
-            Toast.makeText(this, currentuser!!.email.toString(), Toast.LENGTH_SHORT).show()
+            Log.d(TAG, "onStart: ${currentuser!!.email.toString()}")
+            //Toast.makeText(this, currentuser!!.email.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
