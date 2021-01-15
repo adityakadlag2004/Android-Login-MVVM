@@ -3,6 +3,7 @@ package com.android.mvvmdatabind2.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -21,8 +22,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var authRepository: AuthRepository
     private lateinit var viewModel: AuthViewModel
     private lateinit var factory:AuthViewModelFactory
+    private val TAG = "LoginActivity"
     private lateinit var mAuth: FirebaseAuth
     private var currentuser: FirebaseUser? = null
+    private var verifiedboolean=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -48,11 +51,17 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         mAuth = FirebaseAuth.getInstance()
         currentuser = mAuth.currentUser
-        if (currentuser != null) {
-            Intent(this, MainActivity::class.java).also {
-                it.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(it)
+        if (currentuser!=null) {
+            verifiedboolean=currentuser!!.isEmailVerified
+            if (verifiedboolean) {
+                Intent(this, MainActivity::class.java).also {
+                    it.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(it)
+                }
             }
+        }
+        else{
+            Log.d(TAG, "onStart:Not Verified ")
         }
     }
 }

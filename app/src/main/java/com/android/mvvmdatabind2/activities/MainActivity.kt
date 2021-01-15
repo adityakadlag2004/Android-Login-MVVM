@@ -33,8 +33,24 @@ class MainActivity : AppCompatActivity() {
             email_id.text = it.toString()
 
         })
-        repository.displayname.asLiveData().observe(this, Observer {
-            display_name.text=it.toString()
+
+
+        repository.emailverified.asLiveData().observe(this, Observer {
+            display_name.text = it.toString()
+            if (it == "NO") {
+                mAuth.currentUser?.delete()?.addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Intent(this, LoginActivity::class.java).also {
+                            it.flags =
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            startActivity(it)
+                        }
+                        finish()
+                    }
+                }
+            } else {
+                Log.d(TAG, "onCreate: User is Verified")
+            }
         })
 
         hello.setOnClickListener {
@@ -44,6 +60,8 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+
+
     }
 
     override fun onStart() {
@@ -57,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             }
         } else {
             Log.d(TAG, "onStart: ${currentuser!!.email.toString()}")
+
             //Toast.makeText(this, currentuser!!.email.toString(), Toast.LENGTH_SHORT).show()
         }
     }
