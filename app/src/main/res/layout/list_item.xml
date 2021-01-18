@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginStart="10dp"
+	android:layout_marginTop="5dp"
+	android:layout_marginEnd="10dp"
+	android:layout_marginBottom="5dp"
+	app:cardBackgroundColor="@android:color/white"
+	app:cardCornerRadius="5dp">
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		>
+
+		<TextView
+			android:id="@+id/txv_id"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/id"
+			android:textColor="#303030"
+			android:textSize="20sp" />
+
+		<TextView
+			android:id="@+id/txv_email"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/email"
+			android:layout_below="@id/txv_id"
+			android:textColor="#303030"
+			android:textSize="20sp" />
+		<TextView
+			android:id="@+id/txv_first"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/name"
+			android:layout_below="@id/txv_email"
+			android:textColor="#303030"
+			android:textSize="20sp" />
+		<TextView
+			android:id="@+id/txv_last"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/txv_first"
+			android:text="@string/last"
+			android:textColor="#303030"
+			android:textSize="20sp" />
+
+		<ImageView
+			android:layout_width="100dp"
+			android:layout_height="100dp"
+			android:gravity="end"
+			android:id="@+id/img_main"
+			android:src="@color/black"
+			android:layout_toEndOf="@id/txv_email"
+			android:contentDescription="@string/todo"
+			android:layout_marginStart="200dp"
+			android:layout_marginLeft="200dp"
+			android:layout_toRightOf="@id/txv_email" />
+	</RelativeLayout>
+</androidx.cardview.widget.CardView>
