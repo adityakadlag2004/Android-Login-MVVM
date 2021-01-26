@@ -1,8 +1,7 @@
 package com.android.mvvmdatabind2.di.modules
 
-import com.android.mvvmdatabind2.repository.AuthRepository
-import com.android.mvvmdatabind2.factory.ModelFactory
-import com.android.mvvmdatabind2.repository.BaseRepository
+import com.android.mvvmdatabind2.mvvm.factory.ModelFactory
+import com.android.mvvmdatabind2.mvvm.repository.BaseRepository
 import dagger.Module
 import dagger.Provides
 

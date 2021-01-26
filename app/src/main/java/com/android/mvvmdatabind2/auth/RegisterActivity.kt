@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.activities.MainActivity
 import com.android.mvvmdatabind2.databinding.ActivityRegisterBinding
-import com.android.mvvmdatabind2.repository.AuthRepository
-import com.android.mvvmdatabind2.viewmodels.AuthViewModel
-import com.android.mvvmdatabind2.factory.ModelFactory
+import com.android.mvvmdatabind2.mvvm.repository.AuthRepository
+import com.android.mvvmdatabind2.mvvm.viewmodels.AuthViewModel
+import com.android.mvvmdatabind2.mvvm.factory.ModelFactory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 

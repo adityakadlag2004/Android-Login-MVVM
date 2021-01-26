@@ -1,4 +1,4 @@
-package com.android.mvvmdatabind2.repository
+package com.android.mvvmdatabind2.mvvm.repository
 
 import android.content.Context
 

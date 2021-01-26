@@ -1,4 +1,4 @@
-package com.android.mvvmdatabind2.repository
+package com.android.mvvmdatabind2.mvvm.repository
 
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 
-class AuthRepository(private var context: Context)  :BaseRepository(context){
+class AuthRepository(private var context: Context)  : BaseRepository(context){
     private var mAuth = FirebaseAuth.getInstance()
 
     companion object {

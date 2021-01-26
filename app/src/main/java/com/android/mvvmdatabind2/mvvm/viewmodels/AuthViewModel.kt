@@ -1,9 +1,8 @@
-package com.android.mvvmdatabind2.viewmodels
+package com.android.mvvmdatabind2.mvvm.viewmodels
 
-import androidx.databinding.Bindable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.android.mvvmdatabind2.repository.AuthRepository
+import com.android.mvvmdatabind2.mvvm.repository.AuthRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch

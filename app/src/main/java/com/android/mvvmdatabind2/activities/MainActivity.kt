@@ -13,8 +13,8 @@ import com.android.mvvmdatabind2.databinding.ActivityMainBinding
 import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
 import com.android.mvvmdatabind2.di.modules.FactoryModule
 import com.android.mvvmdatabind2.di.modules.RepositoryModule
-import com.android.mvvmdatabind2.repository.MainRepository
-import com.android.mvvmdatabind2.viewmodels.MainViewModel
+import com.android.mvvmdatabind2.mvvm.repository.MainRepository
+import com.android.mvvmdatabind2.mvvm.viewmodels.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
