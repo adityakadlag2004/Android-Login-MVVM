@@ -9,36 +9,34 @@ import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.activities.MainActivity
 import com.android.mvvmdatabind2.databinding.ActivityLoginBinding
-import com.android.mvvmdatabind2.di.DaggerAuthComponent
-import com.android.mvvmdatabind2.di.FactoryModule
-import com.android.mvvmdatabind2.di.RepositoryModule
+import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
+import com.android.mvvmdatabind2.di.modules.FactoryModule
+import com.android.mvvmdatabind2.di.modules.RepositoryModule
 import com.android.mvvmdatabind2.repository.AuthRepository
 import com.android.mvvmdatabind2.viewmodels.AuthViewModel
-import com.android.mvvmdatabind2.viewmodels.factory.ModelFactory
+import com.android.mvvmdatabind2.factory.ModelFactory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var authRepository: AuthRepository
     private lateinit var viewModel: AuthViewModel
     private lateinit var factory: ModelFactory
     private val TAG = "LoginActivity"
     private lateinit var mAuth: FirebaseAuth
     private var currentuser: FirebaseUser? = null
     private var verifiedboolean = false
-    private lateinit var component: DaggerAuthComponent
+    private lateinit var component: DaggerFactoryComponent
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         mAuth = FirebaseAuth.getInstance()
 
-        //   authRepository= AuthRepository(this)
-        //  factory= ModelFactory(authRepository)
 
-        component = DaggerAuthComponent.builder()
+
+        component = DaggerFactoryComponent.builder()
             .repositoryModule(RepositoryModule(this))
             .factoryModule(FactoryModule(AuthRepository(this)))
-            .build() as DaggerAuthComponent
+            .build() as DaggerFactoryComponent
 
 
         viewModel =
