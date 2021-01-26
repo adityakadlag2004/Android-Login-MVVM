@@ -1,4 +1,5 @@
 package com.android.mvvmdatabind2.activities
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private lateinit var mAuth: FirebaseAuth
     private var currentuser: FirebaseUser? = null
-    private val repository=AuthRepository(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,12 +43,10 @@ class MainActivity : AppCompatActivity() {
         requestCall.enqueue(object : Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 if (response.isSuccessful) {
-                    val list = response.body()!!
-                    Log.d(TAG, "onResponse: $list")
+                    val list:List<User> = response.body()!!
+                    recyclerviewMain.layoutManager = LinearLayoutManager(applicationContext)
                     val adapter = UserAdapter(list)
-
                     recyclerviewMain.adapter = adapter
-                    recyclerviewMain.layoutManager = LinearLayoutManager(this@MainActivity)
                     adapter.notifyDataSetChanged()
                 } else {
                     Toast.makeText(this@MainActivity, "Failed", Toast.LENGTH_SHORT).show()

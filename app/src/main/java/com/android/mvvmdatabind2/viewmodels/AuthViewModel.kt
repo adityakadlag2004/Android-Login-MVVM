@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 class AuthViewModel(
-    private val repository: AuthRepository
+     val repository: AuthRepository
 ) :ViewModel() {
 
     val email:MutableLiveData<String> = MutableLiveData()

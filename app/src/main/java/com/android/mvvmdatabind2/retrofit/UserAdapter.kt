@@ -1,5 +1,6 @@
 package com.android.mvvmdatabind2.retrofit
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,13 +23,12 @@ class UserAdapter(private val userList:List<User>) :RecyclerView.Adapter<UserAda
 
         var user: User? = null
 
-        override fun toString(): String {
-            return """${super.toString()} '${email.text}'"""
-        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item,
+            parent, false)
         return ViewHolder(view)
     }
 
@@ -38,6 +38,7 @@ class UserAdapter(private val userList:List<User>) :RecyclerView.Adapter<UserAda
         holder.last.text=userList[position].last_name.toString()
         holder.id.text=userList[position].id.toString()
         holder.user=userList[position]
+        holder.img.setImageURI(Uri.parse(userList[position].avatar.toString()))
     }
 
     override fun getItemCount()=userList.size

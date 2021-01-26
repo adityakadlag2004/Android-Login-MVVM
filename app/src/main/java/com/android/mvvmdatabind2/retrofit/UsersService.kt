@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface UsersService {
 
-    @GET("api/users?page=2")
-    fun getUsers():Call<List<User>>
+    @GET("/api/users?page=2")
+    fun getUsers(): Call<List<User>>
 }

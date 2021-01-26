@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
@@ -12,14 +11,14 @@ import com.android.mvvmdatabind2.activities.MainActivity
 import com.android.mvvmdatabind2.databinding.ActivityRegisterBinding
 import com.android.mvvmdatabind2.repository.AuthRepository
 import com.android.mvvmdatabind2.viewmodels.AuthViewModel
-import com.android.mvvmdatabind2.viewmodels.factory.AuthViewModelFactory
+import com.android.mvvmdatabind2.viewmodels.factory.ModelFactory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var authRepository: AuthRepository
     private lateinit var viewModel: AuthViewModel
-    private lateinit var factory: AuthViewModelFactory
+    private lateinit var factory: ModelFactory
     private lateinit var mAuth: FirebaseAuth
     private val TAG = "RegisterActivity"
     private var verifiedboolean=false
@@ -30,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         authRepository= AuthRepository(this)
-        factory= AuthViewModelFactory(authRepository)
+        factory= ModelFactory(authRepository)
         viewModel= ViewModelProviders.of(this,factory).get(AuthViewModel::class.java)
 
         val binding=DataBindingUtil

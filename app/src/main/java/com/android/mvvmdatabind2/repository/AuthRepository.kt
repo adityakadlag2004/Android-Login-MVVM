@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 
-class AuthRepository(private var context: Context) {
+class AuthRepository(private var context: Context)  {
     private var mAuth = FirebaseAuth.getInstance()
 
     companion object {
