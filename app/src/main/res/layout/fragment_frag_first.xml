@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.FragFirst">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:id="@+id/rel1">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/img1"
+            android:src="@drawable/net"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/todo" />
+
+
+        <ImageView
+            android:id="@+id/img2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="32dp"
+            android:src="@drawable/prime"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/img1"
+            android:layout_toRightOf="@id/img1"
+            android:contentDescription="@string/todo" />
+
+        <ImageView
+            android:id="@+id/img3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="37dp"
+            android:src="@drawable/yt"
+            android:layout_marginLeft="169dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/img2"
+            android:layout_toRightOf="@id/img1"
+            android:contentDescription="@string/todo" />
+
+        <ImageView
+            android:id="@+id/img4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/guiter"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/img1"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/todo"
+            android:layout_marginLeft="20dp" />
+
+        <ImageView
+            android:id="@+id/img5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/gym"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/img1"
+            android:layout_marginStart="20dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/todo"
+            android:layout_marginLeft="20dp" />
+
+        <ImageView
+            android:id="@+id/img6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/yoga"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/img3"
+            android:layout_toEndOf="@id/img5"
+            android:layout_marginStart="20dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/todo"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/img5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/headTitle"
+            android:textSize="20sp"
+            android:text="@string/manage_all_memberships_in_one_place"
+            android:layout_below="@id/img6"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="70dp"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/desc1"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:text="@string/desc11"
+            android:layout_below="@id/headTitle"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal" />
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>

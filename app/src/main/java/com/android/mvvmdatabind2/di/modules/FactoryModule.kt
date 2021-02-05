@@ -12,4 +12,9 @@ class FactoryModule constructor(var authRepository: BaseRepository) {
     fun provideModalFactory(): ModelFactory {
         return ModelFactory(authRepository)
     }
+
+    @Provides
+    fun providesRepository():BaseRepository{
+        return authRepository
+    }
 }

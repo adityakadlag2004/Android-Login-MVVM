@@ -2,7 +2,7 @@ package com.android.mvvmdatabind2.mvvm.repository
 
 import android.content.Context
 import android.content.Intent
-import com.android.mvvmdatabind2.auth.LoginActivity
+import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
 

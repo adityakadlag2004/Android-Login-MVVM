@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
-import com.android.mvvmdatabind2.auth.LoginActivity
+import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.android.mvvmdatabind2.databinding.ActivityMainBinding
 import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
 import com.android.mvvmdatabind2.di.modules.FactoryModule
@@ -21,12 +21,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-    private val TAG = "MainActivity"
     private lateinit var mAuth: FirebaseAuth
     private var currentuser: FirebaseUser? = null
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
-    lateinit var component: DaggerFactoryComponent
+   lateinit var component: DaggerFactoryComponent
+    private val TAG = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
             .repositoryModule(RepositoryModule(this))
             .factoryModule(FactoryModule(MainRepository(this)))
             .build() as DaggerFactoryComponent
-        viewModel =
-            ViewModelProviders.of(this, component.getFactory()).get(MainViewModel::class.java)
+        viewModel =ViewModelProviders.of(this, component.getFactory())
+            .get(MainViewModel::class.java)
         binding = DataBindingUtil
             .setContentView<ActivityMainBinding>(this, R.layout.activity_main)
             .apply {

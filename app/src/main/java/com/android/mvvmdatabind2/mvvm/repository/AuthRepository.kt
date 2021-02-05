@@ -9,7 +9,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
 import com.android.mvvmdatabind2.activities.MainActivity
-import com.android.mvvmdatabind2.auth.LoginActivity
+import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.CoroutineScope
