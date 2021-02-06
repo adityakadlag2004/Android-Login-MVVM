@@ -10,7 +10,6 @@
             type="com.android.mvvmdatabind2.mvvm.viewmodels.AuthViewModel" />
     </data>
     <LinearLayout
-
         android:orientation="vertical"
         android:theme="@style/Theme.AppTheme"
         android:layout_width="match_parent"
@@ -18,39 +17,55 @@
         android:background="@color/white"
         tools:context=".activities.auth.LoginActivity">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            app:startIconDrawable="@drawable/ic_enail"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:autofillHints="@string/email"
+            android:layout_marginTop="210dp"
+            android:layout_marginStart="40dp"
+            app:endIconMode="clear_text"
+            app:boxBackgroundMode="outline"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginEnd="40dp"
+            >
+
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/email_edit_log"
-            android:drawableStart="@drawable/ic_enail"
-            android:drawablePadding="12dp"
-            android:hint="@string/email"
             android:text="@={viewmodel.email}"
-            android:inputType="textEmailAddress"
-            android:autofillHints="@string/email"
-            android:layout_marginTop="160dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:drawableLeft="@drawable/ic_enail">
+            >
 
         </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
 
-
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:drawablePadding="12dp"
+            android:inputType="textPassword"
+            app:startIconDrawable="@drawable/ic_password"
+            android:autofillHints="@string/password"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            app:boxBackgroundMode="outline"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:endIconMode="password_toggle"
+            >
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/password_edit_log"
-            android:hint="@string/password"
-            android:drawablePadding="12dp"
-            android:drawableStart="@drawable/ic_password"
-            android:inputType="textPassword"
             android:text="@={viewmodel.password}"
-            android:autofillHints="@string/password"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:drawableLeft="@drawable/ic_password" />
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:layout_width="match_parent"

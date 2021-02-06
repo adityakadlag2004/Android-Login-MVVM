@@ -16,13 +16,14 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 
-class AuthRepository(private var context: Context)  : BaseRepository(context){
+class AuthRepository(private var context: Context) : BaseRepository(context) {
     private var mAuth = FirebaseAuth.getInstance()
     fun login(email: String, password: String) {
-        mAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    if (mAuth.currentUser!!.isEmailVerified) {
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        if (mAuth.currentUser!!.isEmailVerified) {
                             val user = mAuth.currentUser
                             Intent(context, MainActivity::class.java).also {
                                 it.flags =
@@ -38,10 +39,14 @@ class AuthRepository(private var context: Context)  : BaseRepository(context){
                             Toast.makeText(context, "First Verify Your Email", Toast.LENGTH_SHORT)
                                 .show()
                         }
-                } else {
-                    Log.d(TAG, "login: Login Failed :- ${task.exception}")
+                    } else {
+                        Log.d(TAG, "login: Login Failed :- ${task.exception}")
+                    }
                 }
-            }
+        } else {
+            Toast.makeText(context, "Fill The Fields", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
 
@@ -57,32 +62,37 @@ class AuthRepository(private var context: Context)  : BaseRepository(context){
 
 
     fun register(email: String, password: String) {
-        mAuth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    mAuth.currentUser!!.sendEmailVerification().addOnCompleteListener {
-                        Toast.makeText(
-                            context,
-                            "Check your Email For Verification",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        val user = mAuth.currentUser
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        mAuth.currentUser!!.sendEmailVerification().addOnCompleteListener {
+                            Toast.makeText(
+                                context,
+                                "Check your Email For Verification",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            val user = mAuth.currentUser
+                            Intent(context, LoginActivity::class.java).also {
+                                context.startActivity(it)
+                            }
+                        }
+
+                    } else {
                         Intent(context, LoginActivity::class.java).also {
                             context.startActivity(it)
                         }
+                        Log.d(TAG, "login: Login Failed :- ${task.exception}")
                     }
-
-                } else {
-                    Intent(context, LoginActivity::class.java).also {
-                        context.startActivity(it)
-                    }
-                    Log.d(TAG, "login: Login Failed :- ${task.exception}")
                 }
-            }
+        } else {
+            Toast.makeText(context, "Fill The Fields", Toast.LENGTH_SHORT).show()
+        }
+
     }
-
-
-
-
-
 }
+
+
+
+
+
