@@ -1,4 +1,4 @@
-package com.android.mvvmdatabind2.fragments
+package com.android.mvvmdatabind2.fragments.introfragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import com.android.mvvmdatabind2.R
 
 
-class FragFirst : Fragment() {
+
+class frag2 : Fragment() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +22,7 @@ class FragFirst : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_frag_first, container, false)
+        return inflater.inflate(R.layout.fragment_frag2, container, false)
     }
 
 

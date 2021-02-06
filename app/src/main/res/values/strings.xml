@@ -18,4 +18,9 @@
     <string name="desc11">Compare reviews, Features, Make Online payments with the app that manages your memberships</string>
     <string name="find">Find Best Services</string>
     <string name="desc2">Compare and join Services like Gyms or Classes Online in your Area and Get Digital Membership.</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="we_will_need">We will need Your Information to Begin</string>
+    <string name="next">Next</string>
+    <string name="birthdate">Enter Your BirthDate</string>
 </resources>

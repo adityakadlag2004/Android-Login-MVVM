@@ -4,12 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.widget.ViewPager2
 import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.android.mvvmdatabind2.activities.auth.RegisterActivity
-import com.android.mvvmdatabind2.fragments.FragFirst
-import com.android.mvvmdatabind2.fragments.frag2
+import com.android.mvvmdatabind2.fragments.introfragments.FragFirst
+import com.android.mvvmdatabind2.fragments.introfragments.frag2
 import com.android.mvvmdatabind2.others.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_intro.*
 
@@ -28,7 +27,7 @@ class IntroActivity : AppCompatActivity() {
         }
 
         btn_intro_SignUp.setOnClickListener {
-            Intent(this, RegisterActivity::class.java).also {
+            Intent(this, GetUserInfo::class.java).also {
                 startActivity(it)
             }
         }

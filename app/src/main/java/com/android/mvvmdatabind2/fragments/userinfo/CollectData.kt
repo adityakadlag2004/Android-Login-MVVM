@@ -1,4 +1,4 @@
-package com.android.mvvmdatabind2.fragments
+package com.android.mvvmdatabind2.fragments.userinfo
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import com.android.mvvmdatabind2.R
 
 
 
-class frag2 : Fragment() {
+class CollectData : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +21,7 @@ class frag2 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_frag2, container, false)
+        return inflater.inflate(R.layout.fragment_data, container, false)
     }
 
 
