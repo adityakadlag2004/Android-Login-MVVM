@@ -10,12 +10,15 @@
             type="com.android.mvvmdatabind2.mvvm.viewmodels.AuthViewModel" />
     </data>
     <LinearLayout
+
         android:orientation="vertical"
+        android:theme="@style/Theme.AppTheme"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".activities.auth.LoginActivity">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/email_edit_log"
@@ -25,7 +28,9 @@
             android:autofillHints="@string/email"
             android:layout_marginTop="60dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"/>
+            android:layout_marginEnd="40dp">
+
+        </com.google.android.material.textfield.TextInputEditText>
 
 
 
@@ -46,8 +51,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/btn_log"
             android:text="@string/sign_in"
+            android:textColor="@color/white"
             android:onClick="@{()-> viewmodel.login()}"
             android:layout_marginTop="60dp"
+            android:background="@drawable/btn_circular"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"/>
 
