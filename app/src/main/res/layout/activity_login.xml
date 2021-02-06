@@ -22,13 +22,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/email_edit_log"
+            android:drawableStart="@drawable/ic_enail"
+            android:drawablePadding="12dp"
             android:hint="@string/email"
             android:text="@={viewmodel.email}"
             android:inputType="textEmailAddress"
             android:autofillHints="@string/email"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="160dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp">
+            android:layout_marginEnd="40dp"
+            android:drawableLeft="@drawable/ic_enail">
 
         </com.google.android.material.textfield.TextInputEditText>
 
@@ -39,12 +42,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/password_edit_log"
             android:hint="@string/password"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_password"
             android:inputType="textPassword"
             android:text="@={viewmodel.password}"
             android:autofillHints="@string/password"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"/>
+            android:layout_marginEnd="40dp"
+            android:drawableLeft="@drawable/ic_password" />
 
         <Button
             android:layout_width="match_parent"

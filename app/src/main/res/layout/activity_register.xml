@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -17,30 +16,36 @@
         android:orientation="vertical"
         tools:context=".activities.auth.RegisterActivity">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email_edit_Reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_enail"
             android:layout_marginStart="40dp"
+            android:drawablePadding="12dp"
             android:text="@={viewmodel.email}"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="40dp"
             android:autofillHints="@string/email"
             android:hint="@string/email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:drawableLeft="@drawable/ic_enail" />
 
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_edit_Reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
+            android:drawablePadding="12dp"
             android:layout_marginTop="60dp"
+            android:drawableStart="@drawable/ic_password"
             android:text="@={viewmodel.password}"
             android:layout_marginEnd="40dp"
             android:autofillHints="@string/password"
             android:hint="@string/password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:drawableLeft="@drawable/ic_password" />
 
         <Button
             android:id="@+id/btn_Reg"
@@ -48,6 +53,8 @@
             android:layout_height="wrap_content"
             android:onClick="@{()-> viewmodel.register()}"
             android:layout_marginStart="40dp"
+            android:background="@drawable/btn_circular"
+            android:textColor="@color/white"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="40dp"
             android:text="@string/sign_up" />
@@ -59,7 +66,7 @@
             android:id="@+id/txt_Reg"
             android:layout_gravity="center"
             android:text="@string/already_have_an_account_sign_in"
-            android:textSize="11sp"
+            android:textSize="12sp"
             android:layout_marginTop="20dp"/>
     </LinearLayout>
 </layout>
