@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                 this.viewModel = viewModel
             }
 
-
         binding.mainTxt.setOnClickListener {
         viewModel.signOut()
         }

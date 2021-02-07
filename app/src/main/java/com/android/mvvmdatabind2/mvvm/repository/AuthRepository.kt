@@ -5,19 +5,27 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.startActivityForResult
+import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.activities.MainActivity
 import com.android.mvvmdatabind2.activities.auth.LoginActivity
+import com.android.mvvmdatabind2.others.Constants.USERS
+import com.android.mvvmdatabind2.others.Constants.USER_EMAIL
+import com.android.mvvmdatabind2.others.Constants.USER_ID
+import com.android.mvvmdatabind2.others.Constants.USER_NAME
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
+import com.google.firebase.database.FirebaseDatabase
 
 
 class AuthRepository(private var context: Context) : BaseRepository(context) {
+    var database = FirebaseDatabase.getInstance()
+    var myRef = database.getReference(USERS)
     private var mAuth = FirebaseAuth.getInstance()
+
+
     fun login(email: String, password: String) {
         if (email.isNotEmpty() && password.isNotEmpty()) {
             mAuth.signInWithEmailAndPassword(email, password)
@@ -25,6 +33,7 @@ class AuthRepository(private var context: Context) : BaseRepository(context) {
                     if (task.isSuccessful) {
                         if (mAuth.currentUser!!.isEmailVerified) {
                             val user = mAuth.currentUser
+                            Toast.makeText(context, "Signed In as $email", Toast.LENGTH_SHORT).show()
                             Intent(context, MainActivity::class.java).also {
                                 it.flags =
                                     Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -32,10 +41,6 @@ class AuthRepository(private var context: Context) : BaseRepository(context) {
                             }
                         } else {
                             val user2 = mAuth.currentUser
-                            CoroutineScope(IO).launch {
-                                if (user2 != null) {
-                                }
-                            }
                             Toast.makeText(context, "First Verify Your Email", Toast.LENGTH_SHORT)
                                 .show()
                         }
@@ -61,6 +66,13 @@ class AuthRepository(private var context: Context) : BaseRepository(context) {
     }
 
 
+    fun loginWithGoogle(){
+
+    }
+
+
+
+
     fun register(email: String, password: String) {
         if (email.isNotEmpty() && password.isNotEmpty()) {
             mAuth.createUserWithEmailAndPassword(email, password)
@@ -72,7 +84,15 @@ class AuthRepository(private var context: Context) : BaseRepository(context) {
                                 "Check your Email For Verification",
                                 Toast.LENGTH_SHORT
                             ).show()
+
                             val user = mAuth.currentUser
+                            if (user != null) {
+                                myRef.child(user.uid).child(USER_EMAIL).setValue(email)
+                                myRef.child(user.uid).child(USER_NAME).setValue(
+                                    user.displayName ?: " "
+                                )
+                                myRef.child(user.uid).child(USER_ID).setValue(user.uid)
+                            }
                             Intent(context, LoginActivity::class.java).also {
                                 context.startActivity(it)
                             }

@@ -48,7 +48,6 @@
             android:layout_height="wrap_content"
             android:hint="@string/password"
             android:drawablePadding="12dp"
-            android:inputType="textPassword"
             app:startIconDrawable="@drawable/ic_password"
             android:autofillHints="@string/password"
             android:layout_marginTop="20dp"
@@ -64,7 +63,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/password_edit_log"
             android:text="@={viewmodel.password}"
-            />
+            android:autofillHints="@string/password"
+            android:inputType="textPassword"
+            tools:ignore="LabelFor" />
     </com.google.android.material.textfield.TextInputLayout>
 
         <Button

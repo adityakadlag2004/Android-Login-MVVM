@@ -48,9 +48,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.google.firebase:firebase-auth:20.0.2'
-    implementation 'com.google.firebase:firebase-database:19.6.0'
-    implementation 'com.google.firebase:firebase-storage:19.2.1'
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -63,22 +61,6 @@ dependencies {
 
     //Material Design
     implementation 'com.google.android.material:material:1.2.1'
-
-
-
-
-    // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
-
-    // GSON
-    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
-
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
-    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
-    implementation 'org.conscrypt:conscrypt-android:2.2.1'
-
 
     def multidex_version = "2.0.1"
     implementation "androidx.multidex:multidex:$multidex_version"
@@ -94,6 +76,12 @@ dependencies {
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
+
+    // Also declare the dependency for the Google Play services library and specify its version
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'com.google.firebase:firebase-auth:20.0.2'
+    implementation 'com.google.firebase:firebase-database:19.6.0'
+    implementation 'com.google.firebase:firebase-storage:19.2.1'
 
 
 }
