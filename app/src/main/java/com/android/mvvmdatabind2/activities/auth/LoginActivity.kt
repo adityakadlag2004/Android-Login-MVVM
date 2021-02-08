@@ -57,6 +57,10 @@ class LoginActivity : AppCompatActivity() {
                 this.lifecycleOwner = this@LoginActivity
                 this.viewmodel = viewModel
             }
+
+        binding.btnGoogleLogin.setOnClickListener {
+            signIn()
+        }
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -99,7 +103,14 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithCredential:success")
                     val user = mAuth.currentUser
-                    Intent(this,MainActivity::class.java).also {
+                    if (user != null) {
+                        myRef.child(user.uid).child(Constants.USER_EMAIL).setValue(user.email)
+                        myRef.child(user.uid).child(Constants.USER_NAME).setValue(
+                            user.displayName ?: " "
+                        )
+                        myRef.child(user.uid).child(Constants.USER_ID).setValue(user.uid)
+                    }
+                    Intent(this, MainActivity::class.java).also {
                         startActivity(it)
                         finish()
                     }

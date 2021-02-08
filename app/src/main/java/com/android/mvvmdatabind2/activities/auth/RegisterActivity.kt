@@ -61,9 +61,14 @@ class RegisterActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        binding.btnGoogleRegister.setOnClickListener {
+            signIn()
+        }
         binding.txtReg.setOnClickListener {
             Intent(this, LoginActivity::class.java).also { startActivity(it) }
         }
+
+
     }
 
     override fun onStart() {

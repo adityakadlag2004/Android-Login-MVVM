@@ -26,6 +26,7 @@
             android:autofillHints="@string/email"
             app:startIconDrawable="@drawable/ic_enail"
             android:hint="@string/email"
+            app:endIconMode="clear_text"
             app:boxBackgroundMode="outline"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:inputType="textEmailAddress"
@@ -83,5 +84,17 @@
             android:text="@string/already_have_an_account_sign_in"
             android:textSize="12sp"
             android:layout_marginTop="20dp"/>
+
+        <com.google.android.gms.common.SignInButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_google_register"
+            android:layout_marginStart="90dp"
+            android:layout_marginEnd="90dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp">
+
+        </com.google.android.gms.common.SignInButton>
     </LinearLayout>
 </layout>
