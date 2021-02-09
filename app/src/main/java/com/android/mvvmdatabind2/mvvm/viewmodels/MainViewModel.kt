@@ -9,4 +9,8 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
     fun signOut() {
             repository.signOut()
     }
+    fun getUsername():String
+    {
+        return repository.getUsername()
+    }
 }

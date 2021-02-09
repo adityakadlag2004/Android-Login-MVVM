@@ -2,9 +2,11 @@ package com.android.mvvmdatabind2.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -29,23 +31,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var component: DaggerFactoryComponent
     private lateinit var actionBarToggle: ActionBarDrawerToggle
     private val TAG = "MainActivity"
-    private var currentuser:FirebaseUser?=null
-    private lateinit var header:View
+    private var currentuser: FirebaseUser? = null
+    private lateinit var header: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        header=nav_Main.getHeaderView(0)
         init()
-
-
-        if (currentuser==null)
-        {SendUsertointroActivity()}
-
 
     }
 
     private fun init() {
+        checkUser()
+        header = nav_Main.getHeaderView(0)
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         mAuth = FirebaseAuth.getInstance()
         component = DaggerFactoryComponent.builder()
@@ -72,24 +70,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         actionBarToggle.syncState()
         nav_Main.setNavigationItemSelectedListener(this)
 
-        header=nav_Main.getHeaderView(0)
+        header = nav_Main.getHeaderView(0)
+        val username=viewModel.getUsername()
+        header.tv_email_header.text = mAuth.currentUser!!.email
+        header.tv_username_header.text = username
 
 
     }
 
-
-    override fun onStart() {
-        super.onStart()
+    private fun checkUser() {
         mAuth = FirebaseAuth.getInstance()
-        currentuser = mAuth.currentUser!!
-        if (currentuser == null) {
-            SendUsertointroActivity()
-        } else {
-            header.tv_email_header.text=mAuth.currentUser!!.email
-            header.tv_username_header.text=mAuth.currentUser!!.displayName?:""
-            Log.d(TAG, "onStart: ${currentuser!!.email.toString()}")
-        }
+        currentuser = mAuth.currentUser
+        Handler().postDelayed({
+            if (currentuser != null) {
+                Log.d(TAG, "checkUser: ${currentuser!!.displayName} ")
+                Log.d(TAG, "onStart: ${currentuser!!.email.toString()}")
+            } else {
+                Toast.makeText(this, "No User", Toast.LENGTH_SHORT).show()
+                SendUsertointroActivity()
+            }
+        }, 2000)
     }
+
 
     private fun SendUsertointroActivity() {
         Intent(this, IntroActivity::class.java).also {
@@ -122,7 +124,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
-
 
 
     override fun onBackPressed() {
