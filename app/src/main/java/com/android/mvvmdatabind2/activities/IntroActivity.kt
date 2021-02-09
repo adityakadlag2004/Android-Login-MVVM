@@ -9,7 +9,7 @@ import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.android.mvvmdatabind2.activities.auth.RegisterActivity
 import com.android.mvvmdatabind2.fragments.introfragments.FragFirst
 import com.android.mvvmdatabind2.fragments.introfragments.frag2
-import com.android.mvvmdatabind2.others.ViewPagerAdapter
+import com.android.mvvmdatabind2.adapters.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_intro.*
 
 class IntroActivity : AppCompatActivity() {
@@ -34,7 +34,7 @@ class IntroActivity : AppCompatActivity() {
 
         tabLayout.setupWithViewPager(viewPagerIntro as ViewPager)
 
-        viewPagerAdapter=ViewPagerAdapter(supportFragmentManager,0)
+        viewPagerAdapter= ViewPagerAdapter(supportFragmentManager,0)
         viewPagerAdapter.addFragment(frag1)
         viewPagerAdapter.addFragment(frag2)
         viewPagerIntro.adapter = viewPagerAdapter

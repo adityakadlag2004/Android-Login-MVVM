@@ -1,4 +1,4 @@
-package com.android.mvvmdatabind2.others
+package com.android.mvvmdatabind2.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
