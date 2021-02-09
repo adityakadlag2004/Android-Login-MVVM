@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -12,7 +13,6 @@ import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
-import com.android.mvvmdatabind2.databinding.ActivityMainBinding
 import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
 import com.android.mvvmdatabind2.di.modules.FactoryModule
 import com.android.mvvmdatabind2.di.modules.RepositoryModule
@@ -22,19 +22,32 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.nav_header_layout.*
+import kotlinx.android.synthetic.main.nav_header_layout.view.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var mAuth: FirebaseAuth
     private var currentuser: FirebaseUser? = null
     private lateinit var viewModel: MainViewModel
-    private lateinit var binding: ActivityMainBinding
-    lateinit var component: DaggerFactoryComponent
+    private lateinit var component: DaggerFactoryComponent
     private lateinit var actionBarToggle: ActionBarDrawerToggle
     private val TAG = "MainActivity"
+    private lateinit var header:View
+    private lateinit var emailTV:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        init()
+
+
+
+
+
+    }
+
+    private fun init() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         mAuth = FirebaseAuth.getInstance()
         component = DaggerFactoryComponent.builder()
@@ -44,19 +57,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(MainViewModel::class.java)
         setSupportActionBar(toolBar_main)
-
-
-
-
-
-
-
-        binding = DataBindingUtil
-            .setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-            .apply {
-                this.lifecycleOwner = this@MainActivity
-                this.viewModel = viewModel
-            }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         actionBarToggle = ActionBarDrawerToggle(
             this,
@@ -66,16 +67,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.string.navigation_drawer_close
         )
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
-        supportActionBar?.setHomeButtonEnabled(true);
+
         actionBarToggle.syncState()
 
         drawer_layout_Main.addDrawerListener(actionBarToggle)
         actionBarToggle.syncState()
-        actionBarToggle.isDrawerIndicatorEnabled=true
-        actionBarToggle.isDrawerSlideAnimationEnabled=true
         nav_Main.setNavigationItemSelectedListener(this)
 
+        header=nav_Main.getHeaderView(0)
+
+        header.tv_email_header.text=mAuth.currentUser!!.email
+        header.tv_username_header.text=mAuth.currentUser!!.displayName?:""
+//        binding = DataBindingUtil
+//            .setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+//            .apply {
+//                this.lifecycleOwner = this@MainActivity
+//                this.viewModel = viewModel
+//            }
     }
 
 

@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-    <group
+    <item
         android:id="@+id/menu_MemberShips"
         android:title="@string/memberships">
+        <menu>
+            <item
+                android:id="@+id/menu_active_membership"
+                android:icon="@drawable/ic_list"
+                android:title="@string/active" />
+            <item
+                android:id="@+id/menu_history"
+                android:icon="@drawable/ic_history"
+                android:title="@string/history" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/menu_active_membership"
-            android:title="@string/active" />
-        <item
-            android:id="@+id/menu_history"
-            android:icon="@drawable/ic_history"
-            android:title="@string/history" />
-
-    </group>
 
 
-    <group
+    <item
         android:id="@+id/menu_account"
         android:icon="@drawable/account"
         android:title="@string/account">
+        <menu>
+            <item
+                android:id="@+id/menu_logout"
+                android:icon="@drawable/ic_logout_24"
+                android:title="@string/logout">
 
-        <item
-            android:id="@+id/menu_logout"
-            android:icon="@drawable/ic_logout_24"
-            android:title="@string/logout">
+            </item>
+            <item
+                android:icon="@drawable/ic_settings"
+                android:id="@+id/menu_set"
+                android:title="@string/settings" />
+        </menu>
+    </item>
 
-        </item>
 
-    </group>
-
-    <item
-        android:id="@+id/menu_set"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/settings" />
 </menu>
