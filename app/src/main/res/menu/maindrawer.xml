@@ -23,6 +23,10 @@
         android:icon="@drawable/account"
         android:title="@string/account">
         <menu>
+            <item android:title="@string/profile"
+                android:icon="@drawable/ic_baseline_person_24"
+                android:id="@+id/menu_profile"
+                />
             <item
                 android:id="@+id/menu_logout"
                 android:icon="@drawable/ic_logout_24"
@@ -33,6 +37,8 @@
                 android:icon="@drawable/ic_settings"
                 android:id="@+id/menu_set"
                 android:title="@string/settings" />
+
+
         </menu>
     </item>
 

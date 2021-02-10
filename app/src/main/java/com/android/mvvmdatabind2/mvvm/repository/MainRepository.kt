@@ -4,7 +4,6 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.android.mvvmdatabind2.others.Constants
@@ -35,18 +34,22 @@ class MainRepository(private var context: Context) : BaseRepository(context) {
     }
 
     fun getUsername(): MutableLiveData<String> {
-        myRef.child(mAuth.currentUser!!.uid).addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    username2.value = snapshot.child(USER_NAME).value.toString()
-                    Log.d(TAG, "onDataChange: Repo$username2")
+        val user = mAuth.currentUser
+        if (user != null && username2.value.isNullOrEmpty()) {
+            myRef.child(mAuth.currentUser!!.uid).addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        username2.value = snapshot.child(USER_NAME).value.toString()
+                        Log.d(TAG, "onDataChange: Repo$username2")
+                    }
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.d(TAG, "onCancelled: Fail")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d(TAG, "onCancelled: Fail")
+                }
+            })
+        }
+
         Log.d(TAG, "onDataChange: Last Repo$username2 ")
         return username2
     }

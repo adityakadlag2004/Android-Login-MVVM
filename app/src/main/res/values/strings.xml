@@ -32,4 +32,5 @@
     <string name="navigation_drawer_open">Open navigation Drawer</string>
     <string name="navigation_drawer_close">Close navigation Drawer</string>
     <string name="username">username</string>
+    <string name="profile">Profile</string>
 </resources>

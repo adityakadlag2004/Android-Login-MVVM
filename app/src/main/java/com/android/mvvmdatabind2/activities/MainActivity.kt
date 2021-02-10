@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         init()
 
-        viewModel.getUsername().observe(this, Observer{ string->
+        viewModel.getUsername().observe(this, Observer { string ->
             header.tv_email_header.text = mAuth.currentUser!!.email
             header.tv_username_header.text = string
         })
@@ -78,7 +78,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         header = nav_Main.getHeaderView(0)
 
 
-
     }
 
     private fun checkUser() {
@@ -89,10 +88,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Log.d(TAG, "checkUser: ${currentuser!!.displayName} ")
                 Log.d(TAG, "onStart: ${currentuser!!.email.toString()}")
             } else {
-                Toast.makeText(this, "No User", Toast.LENGTH_SHORT).show()
                 SendUsertointroActivity()
             }
-        }, 2000)
+        }, 100)
     }
 
 
@@ -108,6 +106,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.menu_account -> {
                 return true
             }
+
+            R.id.menu_profile -> {
+                return true
+            }
+
             R.id.menu_logout -> {
                 viewModel.signOut()
                 return true
@@ -118,6 +121,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.menu_set -> {
                 return true
             }
+
 
             R.id.menu_history -> {
                 return true
