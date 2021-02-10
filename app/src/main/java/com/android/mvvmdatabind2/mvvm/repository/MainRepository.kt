@@ -4,6 +4,8 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.android.mvvmdatabind2.others.Constants
 import com.android.mvvmdatabind2.others.Constants.USER_NAME
@@ -18,10 +20,10 @@ class MainRepository(private var context: Context) : BaseRepository(context) {
     private var mAuth = FirebaseAuth.getInstance()
     var database = FirebaseDatabase.getInstance()
     var myRef = database.getReference(Constants.USERS)
-    var username2 = ""
+    var username2 = MutableLiveData<String>()
 
 
-     fun signOut() {
+    fun signOut() {
         mAuth = FirebaseAuth.getInstance()
 
         mAuth.signOut()
@@ -32,18 +34,20 @@ class MainRepository(private var context: Context) : BaseRepository(context) {
 
     }
 
-    fun getUsername():String{
-    myRef.child(mAuth.currentUser!!.uid).addValueEventListener(object : ValueEventListener {
-        override fun onDataChange(snapshot: DataSnapshot) {
-            if (snapshot.exists()) {
-                username2 = snapshot.child(USER_NAME).value.toString()
+    fun getUsername(): MutableLiveData<String> {
+        myRef.child(mAuth.currentUser!!.uid).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    username2.value = snapshot.child(USER_NAME).value.toString()
+                    Log.d(TAG, "onDataChange: Repo$username2")
+                }
             }
-        }
 
-        override fun onCancelled(error: DatabaseError) {
-            Log.d(TAG, "onCancelled: Fail")
-        }
-    })
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(TAG, "onCancelled: Fail")
+            }
+        })
+        Log.d(TAG, "onDataChange: Last Repo$username2 ")
         return username2
     }
 

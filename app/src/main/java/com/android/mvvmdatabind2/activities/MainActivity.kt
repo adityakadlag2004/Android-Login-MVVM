@@ -11,6 +11,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
@@ -38,12 +39,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         init()
 
+        viewModel.getUsername().observe(this, Observer{ string->
+            header.tv_email_header.text = mAuth.currentUser!!.email
+            header.tv_username_header.text = string
+        })
+
     }
 
     private fun init() {
         checkUser()
         header = nav_Main.getHeaderView(0)
-
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         mAuth = FirebaseAuth.getInstance()
         component = DaggerFactoryComponent.builder()
@@ -71,9 +76,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_Main.setNavigationItemSelectedListener(this)
 
         header = nav_Main.getHeaderView(0)
-        val username=viewModel.getUsername()
-        header.tv_email_header.text = mAuth.currentUser!!.email
-        header.tv_username_header.text = username
+
 
 
     }
