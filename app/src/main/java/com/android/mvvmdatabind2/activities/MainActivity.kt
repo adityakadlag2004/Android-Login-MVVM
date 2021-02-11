@@ -83,28 +83,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     }
-
-//    private fun checkUser() {
-//        mAuth = FirebaseAuth.getInstance()
-//        currentuser = mAuth.currentUser
-//        Handler().postDelayed({
-//            if (currentuser != null) {
-//                Log.d(TAG, "checkUser: ${currentuser!!.displayName} ")
-//                Log.d(TAG, "onStart: ${currentuser!!.email.toString()}")
-//            } else {
-//                sendToIntroActivity()
-//            }
-//        }, 100)
-//    }
-
-
-    private fun sendToIntroActivity() {
-        Intent(this, IntroActivity::class.java).also {
-            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(it)
-            finish()
-        }
-    }
+    
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
