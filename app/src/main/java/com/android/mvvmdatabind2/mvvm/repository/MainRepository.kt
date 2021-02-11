@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.android.mvvmdatabind2.others.Constants
 import com.android.mvvmdatabind2.others.Constants.USER_NAME
+import com.android.mvvmdatabind2.others.Constants.USER_PROFILE_IMAGE
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,6 +21,7 @@ class MainRepository(private var context: Context) : BaseRepository(context) {
     var database = FirebaseDatabase.getInstance()
     var myRef = database.getReference(Constants.USERS)
     var username2 = MutableLiveData<String>()
+    var profileImage = MutableLiveData<String>()
 
 
     fun signOut() {
@@ -41,6 +43,7 @@ class MainRepository(private var context: Context) : BaseRepository(context) {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         username2.value = snapshot.child(USER_NAME).value.toString()
+                        profileImage.value=snapshot.child(USER_PROFILE_IMAGE).value.toString()
                         Log.d(TAG, "onDataChange: Repo$username2")
                     }
                 }
@@ -53,6 +56,27 @@ class MainRepository(private var context: Context) : BaseRepository(context) {
 
         Log.d(TAG, "onDataChange: Last Repo$username2 ")
         return username2
+    }
+
+    fun getImage(): MutableLiveData<String> {
+        val user = mAuth.currentUser
+        if (user != null && username2.value.isNullOrEmpty()) {
+            myRef.child(mAuth.currentUser!!.uid).addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        profileImage.value=snapshot.child(USER_PROFILE_IMAGE).value.toString()
+                        Log.d(TAG, "onDataChange: Repo$username2")
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d(TAG, "onCancelled: Fail")
+                }
+            })
+        }
+
+        Log.d(TAG, "onDataChange: Last Repo$username2 ")
+        return profileImage
     }
 
 }

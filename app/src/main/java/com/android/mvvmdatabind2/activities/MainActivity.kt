@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.net.toUri
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
@@ -21,6 +22,8 @@ import com.android.mvvmdatabind2.mvvm.viewmodels.MainViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_add_user_data.view.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header_layout.view.*
 
@@ -41,6 +44,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewModel.getUsername().observe(this, { string ->
             header.tv_email_header.text = mAuth.currentUser!!.email
             header.tv_username_header.text = string
+        })
+
+        viewModel.getImage().observe(this,{
+         Picasso.get().load(it.toUri()).into(header.imageView2)
         })
 
         header.setOnClickListener {
@@ -83,7 +90,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     }
-    
+
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
