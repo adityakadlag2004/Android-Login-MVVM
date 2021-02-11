@@ -1,9 +1,6 @@
 package com.android.mvvmdatabind2.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -47,7 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
         viewModel.getImage().observe(this,{
-         Picasso.get().load(it.toUri()).into(header.imageView2)
+         Picasso.get().load(it.toUri()).placeholder(R.drawable.ic_baseline_person_24).into(header.imageView2)
         })
 
         header.setOnClickListener {

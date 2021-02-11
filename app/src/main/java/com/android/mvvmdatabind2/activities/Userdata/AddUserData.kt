@@ -1,21 +1,16 @@
-package com.android.mvvmdatabind2.activities
+package com.android.mvvmdatabind2.activities.Userdata
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import com.android.mvvmdatabind2.R
-import com.android.mvvmdatabind2.others.Constants.DEFAULT_IMAGE_PROFILE
+import com.android.mvvmdatabind2.activities.MainActivity
 import com.android.mvvmdatabind2.others.Constants.USERS
-import com.android.mvvmdatabind2.others.Constants.USER_NAME
 import com.android.mvvmdatabind2.others.Constants.USER_PROFILE_IMAGE
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_add_user_data.*

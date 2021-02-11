@@ -1,4 +1,4 @@
-package com.android.mvvmdatabind2.activities
+package com.android.mvvmdatabind2.activities.Userdata
 
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity

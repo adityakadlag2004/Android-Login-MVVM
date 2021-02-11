@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat.startActivityForResult
 import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.activities.MainActivity
+import com.android.mvvmdatabind2.activities.Userdata.AddUserData
 import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.android.mvvmdatabind2.others.Constants.DEFAULT_IMAGE_PROFILE
 import com.android.mvvmdatabind2.others.Constants.USERS
@@ -97,7 +98,7 @@ class AuthRepository(private var context: Context) : BaseRepository(context) {
                                 myRef.child(user.uid).child(USER_PROFILE_IMAGE).setValue(
                                     DEFAULT_IMAGE_PROFILE)
                             }
-                            Intent(context, LoginActivity::class.java).also {
+                            Intent(context, AddUserData::class.java).also {
                                 context.startActivity(it)
                             }
                         }

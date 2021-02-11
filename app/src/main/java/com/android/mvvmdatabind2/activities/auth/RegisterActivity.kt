@@ -7,7 +7,7 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
-import com.android.mvvmdatabind2.activities.AddUserData
+import com.android.mvvmdatabind2.activities.Userdata.AddUserData
 import com.android.mvvmdatabind2.activities.MainActivity
 import com.android.mvvmdatabind2.databinding.ActivityRegisterBinding
 import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
@@ -20,7 +20,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
