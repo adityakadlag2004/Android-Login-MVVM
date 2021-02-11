@@ -11,7 +11,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
@@ -39,15 +38,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         init()
 
-        viewModel.getUsername().observe(this, Observer { string ->
+        viewModel.getUsername().observe(this, { string ->
             header.tv_email_header.text = mAuth.currentUser!!.email
             header.tv_username_header.text = string
         })
 
+        header.setOnClickListener {
+            Toast.makeText(this, "Header", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun init() {
-        checkUser()
+       // checkUser()
         header = nav_Main.getHeaderView(0)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         mAuth = FirebaseAuth.getInstance()
@@ -78,26 +81,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         header = nav_Main.getHeaderView(0)
 
 
+
     }
 
-    private fun checkUser() {
-        mAuth = FirebaseAuth.getInstance()
-        currentuser = mAuth.currentUser
-        Handler().postDelayed({
-            if (currentuser != null) {
-                Log.d(TAG, "checkUser: ${currentuser!!.displayName} ")
-                Log.d(TAG, "onStart: ${currentuser!!.email.toString()}")
-            } else {
-                SendUsertointroActivity()
-            }
-        }, 100)
-    }
+//    private fun checkUser() {
+//        mAuth = FirebaseAuth.getInstance()
+//        currentuser = mAuth.currentUser
+//        Handler().postDelayed({
+//            if (currentuser != null) {
+//                Log.d(TAG, "checkUser: ${currentuser!!.displayName} ")
+//                Log.d(TAG, "onStart: ${currentuser!!.email.toString()}")
+//            } else {
+//                sendToIntroActivity()
+//            }
+//        }, 100)
+//    }
 
 
-    private fun SendUsertointroActivity() {
+    private fun sendToIntroActivity() {
         Intent(this, IntroActivity::class.java).also {
             it.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(it)
+            finish()
         }
     }
 
@@ -113,6 +118,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             R.id.menu_logout -> {
                 viewModel.signOut()
+                finish()
                 return true
             }
             R.id.menu_active_membership -> {

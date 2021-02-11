@@ -27,8 +27,9 @@ class MainRepository(private var context: Context) : BaseRepository(context) {
 
         mAuth.signOut()
         Intent(context, LoginActivity::class.java).also {
-            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(it)
+
         }
 
     }
