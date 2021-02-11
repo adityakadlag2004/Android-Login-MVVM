@@ -28,6 +28,8 @@
         android:layout_marginTop="10dp"
         android:textSize="13sp"/>
 
+
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,6 +75,13 @@
 
 
     </com.google.android.material.textfield.TextInputLayout>
+    <ProgressBar
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/progress_bar_data"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

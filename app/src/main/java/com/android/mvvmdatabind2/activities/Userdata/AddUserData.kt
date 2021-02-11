@@ -3,35 +3,38 @@ package com.android.mvvmdatabind2.activities.Userdata
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
-import com.android.mvvmdatabind2.activities.MainActivity
-import com.android.mvvmdatabind2.others.Constants.USERS
-import com.android.mvvmdatabind2.others.Constants.USER_PROFILE_IMAGE
+import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
+import com.android.mvvmdatabind2.di.modules.FactoryModule
+import com.android.mvvmdatabind2.di.modules.RepositoryModule
+import com.android.mvvmdatabind2.mvvm.repository.UserDataRepo
+import com.android.mvvmdatabind2.mvvm.viewmodels.UserDataViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_add_user_data.*
 
 
 class AddUserData : AppCompatActivity() {
-    var database = FirebaseDatabase.getInstance()
-    var myRef = database.getReference(USERS)
     private var mAuth = FirebaseAuth.getInstance()
-    private lateinit var username: String
     var imageUri: Uri? = null
-    private lateinit var profileImg: String
-    var storage = FirebaseStorage.getInstance()
-    var storageRef: StorageReference = storage.getReference(USERS)
+    private lateinit var component: DaggerFactoryComponent
     private var currentuser: FirebaseUser? = null
+    private lateinit var viewModel: UserDataViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_user_data)
         mAuth = FirebaseAuth.getInstance()
         currentuser = mAuth.currentUser
+
+        component = DaggerFactoryComponent.builder()
+            .repositoryModule(RepositoryModule(this))
+            .factoryModule(FactoryModule(UserDataRepo(this)))
+            .build() as DaggerFactoryComponent
+        viewModel = ViewModelProviders.of(this,component.getFactory()).get(UserDataViewModel::class.java)
 
         change_photo.setOnClickListener {
             val galleryIntent = Intent()
@@ -46,32 +49,14 @@ class AddUserData : AppCompatActivity() {
 
         btn_continue_data.setOnClickListener {
             if (imageUri != null) {
-                uploadToFirebase(imageUri!!)
+                viewModel.uploadToFirebase(imageUri!!)
+                progress_bar_data.visibility= View.VISIBLE
             }
         }
 
 
     }
 
-
-
-    private fun uploadToFirebase(uri: Uri) {
-        if (currentuser != null) {
-            val fileReference: StorageReference = storageRef.child(currentuser!!.uid)
-                .child(USER_PROFILE_IMAGE)
-
-            fileReference.putFile(uri)
-                .addOnSuccessListener {
-                    fileReference.downloadUrl.addOnSuccessListener {
-                        myRef.child(currentuser!!.uid).child(USER_PROFILE_IMAGE)
-                            .setValue(it.toString())
-                        sendUserToMainActivity()
-                    }
-                }
-                .addOnProgressListener { }
-                .addOnFailureListener { TODO("Not yet implemented") }
-        }
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -81,10 +66,5 @@ class AddUserData : AppCompatActivity() {
         }
     }
 
-    private fun sendUserToMainActivity() {
-        Intent(this, MainActivity::class.java).also {
-            startActivity(it)
-            finish()
-        }
-    }
+
 }
