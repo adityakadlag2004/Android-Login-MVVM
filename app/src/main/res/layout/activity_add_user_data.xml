@@ -20,6 +20,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/change_photo"
         android:layout_gravity="center"
         android:text="@string/change_profile_photo"
         android:textColor="@color/blue"
@@ -80,6 +81,7 @@
         android:textColor="@color/white"
         android:layout_marginTop="60dp"
         android:background="@drawable/btn_circular"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"/>
+        android:textAllCaps="false"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"/>
 </LinearLayout>
