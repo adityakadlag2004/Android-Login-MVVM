@@ -33,4 +33,5 @@
     <string name="navigation_drawer_close">Close navigation Drawer</string>
     <string name="username">username</string>
     <string name="profile">Profile</string>
+    <string name="change_profile_photo">Change Profile Photo</string>
 </resources>

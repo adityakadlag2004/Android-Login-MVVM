@@ -14,7 +14,6 @@ import com.android.mvvmdatabind2.di.modules.FactoryModule
 import com.android.mvvmdatabind2.di.modules.RepositoryModule
 import com.android.mvvmdatabind2.mvvm.repository.AuthRepository
 import com.android.mvvmdatabind2.mvvm.viewmodels.AuthViewModel
-import com.android.mvvmdatabind2.mvvm.factory.ModelFactory
 import com.android.mvvmdatabind2.others.Constants
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -27,9 +26,8 @@ import com.google.firebase.database.FirebaseDatabase
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: AuthViewModel
-    private lateinit var factory: ModelFactory
     private lateinit var googleSignInClient: GoogleSignInClient
-    val RC_SIGN_IN = 120
+    private val RC_SIGN_IN = 120
     private val TAG = "LoginActivity"
     private lateinit var mAuth: FirebaseAuth
     private var currentuser: FirebaseUser? = null
@@ -107,6 +105,9 @@ class LoginActivity : AppCompatActivity() {
                         myRef.child(user.uid).child(Constants.USER_EMAIL).setValue(user.email)
                         myRef.child(user.uid).child(Constants.USER_NAME).setValue(
                             user.displayName ?: " "
+                        )
+                        myRef.child(user.uid).child(Constants.USER_PROFILE_IMAGE).setValue(
+                            Constants.DEFAULT_IMAGE_PROFILE
                         )
                         myRef.child(user.uid).child(Constants.USER_ID).setValue(user.uid)
                     }

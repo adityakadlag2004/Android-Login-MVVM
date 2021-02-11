@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
+import com.android.mvvmdatabind2.activities.AddUserData
 import com.android.mvvmdatabind2.activities.MainActivity
 import com.android.mvvmdatabind2.databinding.ActivityRegisterBinding
 import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
@@ -123,9 +124,12 @@ class RegisterActivity : AppCompatActivity() {
                         myRef.child(user.uid).child(Constants.USER_NAME).setValue(
                             user.displayName ?: " "
                         )
+                        myRef.child(user.uid).child(Constants.USER_PROFILE_IMAGE).setValue(
+                            Constants.DEFAULT_IMAGE_PROFILE
+                        )
                         myRef.child(user.uid).child(Constants.USER_ID).setValue(user.uid)
                     }
-                    Intent(this, MainActivity::class.java).also {
+                    Intent(this, AddUserData::class.java).also {
                         startActivity(it)
                         finish()
                     }
