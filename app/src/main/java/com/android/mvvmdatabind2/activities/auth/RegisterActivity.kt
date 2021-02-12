@@ -123,9 +123,6 @@ class RegisterActivity : AppCompatActivity() {
                         myRef.child(user.uid).child(Constants.USER_NAME).setValue(
                             user.displayName ?: " "
                         )
-                        myRef.child(user.uid).child(Constants.USER_PROFILE_IMAGE).setValue(
-                            Constants.DEFAULT_IMAGE_PROFILE
-                        )
                         myRef.child(user.uid).child(Constants.USER_ID).setValue(user.uid)
                     }
                     Intent(this, AddUserData::class.java).also {

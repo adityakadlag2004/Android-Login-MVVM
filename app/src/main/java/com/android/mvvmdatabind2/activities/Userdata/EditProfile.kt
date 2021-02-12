@@ -3,6 +3,7 @@ package com.android.mvvmdatabind2.activities.Userdata
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.others.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -13,11 +14,13 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class EditProfile : AppCompatActivity() {
-    var database = FirebaseDatabase.getInstance()
-    private lateinit var username: String
+    private var phoneNumber: String=""
     var imageUri: Uri? = null
     private var currentuser: FirebaseUser? = null
+    private lateinit var username: String
     private lateinit var profileImg: String
+    var database = FirebaseDatabase.getInstance()
+    private val TAG = "EditProfile"
     var myRef = database.getReference(Constants.USERS)
     private var mAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,12 +37,13 @@ class EditProfile : AppCompatActivity() {
                     if (snapshot.exists()) {
                         username = snapshot.child(Constants.USER_NAME).value.toString()
                         profileImg = snapshot.child(Constants.USER_PROFILE_IMAGE).value.toString()
+                        phoneNumber = snapshot.child(Constants.USER_PHONENUMBER).value.toString()
 
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
+                    Log.d(TAG, "onCancelled: ${error.message}")
                 }
             })
         }

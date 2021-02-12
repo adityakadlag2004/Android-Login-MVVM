@@ -3,6 +3,7 @@ package com.android.mvvmdatabind2.mvvm.viewmodels
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.mvvmdatabind2.mvvm.repository.MainRepository
 
@@ -21,5 +22,14 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
 
     fun getImage(): LiveData<String> {
         return repository.getImage()
+    }
+
+    fun checkUserHasData():LiveData<String>
+    {
+      return repository.checkUserHasData()
+    }
+
+    fun sendUsertoAddUserDataActivity() {
+        repository.sendUserToAddUserData()
     }
 }

@@ -103,10 +103,6 @@ class LoginActivity : AppCompatActivity() {
                     val user = mAuth.currentUser
                     if (user != null) {
                         myRef.child(user.uid).child(Constants.USER_EMAIL).setValue(user.email)
-                        myRef.child(user.uid).child(Constants.USER_NAME).setValue(
-                            user.displayName ?: " "
-                        )
-
                         myRef.child(user.uid).child(Constants.USER_ID).setValue(user.uid)
                     }
                     Intent(this, MainActivity::class.java).also {

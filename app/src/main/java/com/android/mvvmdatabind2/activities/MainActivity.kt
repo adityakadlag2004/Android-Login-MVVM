@@ -44,7 +44,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
         viewModel.getImage().observe(this,{
-         Picasso.get().load(it.toUri()).placeholder(R.drawable.ic_baseline_person_24).into(header.imageView2)
+         Picasso.get().load(it.toUri()).error(R.drawable.default_user).placeholder(R.drawable.default_user).into(header.imageView2)
+        })
+
+        viewModel.checkUserHasData().observe(this,{
+            if (it=="no")
+            {
+              viewModel.sendUsertoAddUserDataActivity()
+            }
         })
 
         header.setOnClickListener {

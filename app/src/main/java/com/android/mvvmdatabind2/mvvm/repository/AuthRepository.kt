@@ -15,6 +15,7 @@ import com.android.mvvmdatabind2.others.Constants.USERS
 import com.android.mvvmdatabind2.others.Constants.USER_EMAIL
 import com.android.mvvmdatabind2.others.Constants.USER_ID
 import com.android.mvvmdatabind2.others.Constants.USER_NAME
+import com.android.mvvmdatabind2.others.Constants.USER_PHONENUMBER
 import com.android.mvvmdatabind2.others.Constants.USER_PROFILE_IMAGE
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -69,9 +70,7 @@ class AuthRepository(private var context: Context) : BaseRepository(context) {
     }
 
 
-    fun loginWithGoogle(){
 
-    }
 
 
 
@@ -95,8 +94,6 @@ class AuthRepository(private var context: Context) : BaseRepository(context) {
                                     user.displayName ?: " "
                                 )
                                 myRef.child(user.uid).child(USER_ID).setValue(user.uid)
-                                myRef.child(user.uid).child(USER_PROFILE_IMAGE).setValue(
-                                    DEFAULT_IMAGE_PROFILE)
                             }
                             Intent(context, LoginActivity::class.java).also {
                                 context.startActivity(it)

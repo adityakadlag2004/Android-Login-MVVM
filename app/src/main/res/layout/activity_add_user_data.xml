@@ -46,7 +46,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/firstName_data">
+            android:id="@+id/addName_data">
 
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
@@ -54,7 +54,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/last_name"
+        android:hint="@string/phone_number"
         android:drawablePadding="12dp"
         android:autofillHints="@string/password"
         android:layout_marginTop="20dp"
@@ -68,9 +68,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autofillHints="@string/last_name"
-        android:id="@+id/lastName_data"
-        android:inputType="text"
+        android:autofillHints="@string/phone_number"
+        android:id="@+id/addPhone_data"
+        android:inputType="phone"
         tools:ignore="LabelFor" />
 
 
