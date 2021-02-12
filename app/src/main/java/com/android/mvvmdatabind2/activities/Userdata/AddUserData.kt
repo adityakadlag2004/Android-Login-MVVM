@@ -111,8 +111,7 @@ class AddUserData : AppCompatActivity() {
                                 snapshot.child(Constants.USER_PHONENUMBER).value.toString()
                             addPhone_data.setText(phoneNumber)
                         }
-                        if (username != "")
-                            addName_data.setText(username)
+
 
                     }
                     Log.d(TAG, "onDataChange: don't exists")
