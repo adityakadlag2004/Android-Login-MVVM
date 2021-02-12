@@ -10,22 +10,19 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.android.synthetic.main.activity_add_user_data.*
 
 class UserDataRepo(var context: Context) : BaseRepository(context) {
     var database = FirebaseDatabase.getInstance()
     var myRef = database.getReference(Constants.USERS)
     private var mAuth = FirebaseAuth.getInstance()
-    private lateinit var username: String
-    var imageUri: Uri? = null
-    private lateinit var profileImg: String
     var storage = FirebaseStorage.getInstance()
     var storageRef: StorageReference = storage.getReference(Constants.USERS)
     private var currentuser: FirebaseUser? = null
 
 
-
-     suspend fun uploadToFirebase(uri: Uri) {
-        currentuser=mAuth.currentUser
+    suspend fun uploadToFirebase(uri: Uri) {
+        currentuser = mAuth.currentUser
         if (currentuser != null) {
             val fileReference: StorageReference = storageRef.child(currentuser!!.uid)
                 .child(Constants.USER_PROFILE_IMAGE)
@@ -45,10 +42,21 @@ class UserDataRepo(var context: Context) : BaseRepository(context) {
         }
     }
 
-     fun sendUserToMainActivity() {
+    fun sendUserToMainActivity() {
         Intent(context, MainActivity::class.java).also {
             Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(it)
+        }
+    }
+
+    fun addUserNameAndPhoneNumber(name: String, phonenumber: String) {
+        val user=mAuth.currentUser
+        if (currentuser!=null)
+        {
+            myRef.child(currentuser!!.uid).child(Constants.USER_NAME)
+                .setValue(name)
+            myRef.child(currentuser!!.uid).child(Constants.USER_PHONENUMBER)
+                .setValue(phonenumber)
         }
     }
 }

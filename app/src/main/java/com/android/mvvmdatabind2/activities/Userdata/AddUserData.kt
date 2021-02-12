@@ -95,7 +95,7 @@ class AddUserData : AppCompatActivity() {
         }
     }
 
-    fun getData() {
+    private fun getData() {
         if (currentuser != null) {
             myRef.child(currentuser!!.uid).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -105,16 +105,12 @@ class AddUserData : AppCompatActivity() {
                             profileImg =
                                 snapshot.child(Constants.USER_PROFILE_IMAGE).value.toString()
                             Picasso.get().load(profileImg.toUri()).into(profileImage_Data)
-
                         }
-
                         if (snapshot.hasChild(Constants.USER_PHONENUMBER)) {
                             phoneNumber =
                                 snapshot.child(Constants.USER_PHONENUMBER).value.toString()
                             addPhone_data.setText(phoneNumber)
                         }
-
-
                         if (username != "")
                             addName_data.setText(username)
 

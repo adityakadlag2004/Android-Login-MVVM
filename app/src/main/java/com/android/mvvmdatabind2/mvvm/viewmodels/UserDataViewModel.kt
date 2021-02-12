@@ -19,4 +19,9 @@ class UserDataViewModel(var repository:UserDataRepo) :ViewModel() {
         repository.sendUserToMainActivity()
     }
 
+    fun addUserNameAndPhoneNumber(name:String,phonenumber:String)
+    {
+      repository.addUserNameAndPhoneNumber(name,phonenumber)
+    }
+
 }
