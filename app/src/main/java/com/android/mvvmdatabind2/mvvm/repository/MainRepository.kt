@@ -27,17 +27,7 @@ class MainRepository(private var context: Context) : BaseRepository(context) {
     var userdata = MutableLiveData<String>()
 
 
-    fun signOut() {
-        mAuth = FirebaseAuth.getInstance()
 
-        mAuth.signOut()
-        Intent(context, LoginActivity::class.java).also {
-            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            context.startActivity(it)
-
-        }
-
-    }
 
     fun getUsername(): MutableLiveData<String> {
         val user = mAuth.currentUser
@@ -83,25 +73,7 @@ class MainRepository(private var context: Context) : BaseRepository(context) {
         return profileImage
     }
 
-    fun checkUserHasData(): MutableLiveData<String> {
-        val user = mAuth.currentUser
-        if (user != null) {
-            myRef.child(user.uid).addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.hasChild(USER_PHONENUMBER) && snapshot.hasChild(USER_PROFILE_IMAGE)) {
-                        userdata.value = "yes"
-                    } else {
-                        userdata.value = "no"
-                    }
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Log.d(TAG, "onCancelled: ${error.message}")
-                }
-            })
-        }
-        return userdata
-    }
 
     fun sendUserToAddUserData() {
         Intent(context, AddUserData::class.java).also {
