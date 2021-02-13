@@ -29,49 +29,7 @@ class MainRepository(private var context: Context) : BaseRepository(context) {
 
 
 
-    fun getUsername(): MutableLiveData<String> {
-        val user = mAuth.currentUser
-        if (user != null && username2.value.isNullOrEmpty()) {
-            myRef.child(mAuth.currentUser!!.uid).addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        username2.value = snapshot.child(USER_NAME).value.toString()
-                        profileImage.value = snapshot.child(USER_PROFILE_IMAGE).value.toString()
-                        Log.d(TAG, "onDataChange: Repo$username2")
-                    }
 
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Log.d(TAG, "onCancelled: Fail")
-                }
-            })
-        }
-
-        Log.d(TAG, "onDataChange: Last Repo$username2 ")
-        return username2
-    }
-
-    fun getImage(): MutableLiveData<String> {
-        val user = mAuth.currentUser
-        if (user != null && username2.value.isNullOrEmpty()) {
-            myRef.child(mAuth.currentUser!!.uid).addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        profileImage.value = snapshot.child(USER_PROFILE_IMAGE).value.toString()
-                        Log.d(TAG, "onDataChange: Repo$username2")
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Log.d(TAG, "onCancelled: Fail")
-                }
-            })
-        }
-
-        Log.d(TAG, "onDataChange: Last Repo$username2 ")
-        return profileImage
-    }
 
 
 
