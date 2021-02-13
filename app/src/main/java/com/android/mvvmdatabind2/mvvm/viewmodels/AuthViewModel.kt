@@ -23,4 +23,8 @@ class AuthViewModel(
     fun register() = CoroutineScope(IO).launch {
         repository.register(email.value.toString(),password.value.toString())
     }
+    fun forgotPassword(email:String)
+    {
+      repository.forgotPassword(email)
+    }
 }

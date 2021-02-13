@@ -75,12 +75,6 @@ class MainRepository(private var context: Context) : BaseRepository(context) {
 
 
 
-    fun sendUserToAddUserData() {
-        Intent(context, AddUserData::class.java).also {
-            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            context.startActivity(it)
 
-        }
-    }
 }
 

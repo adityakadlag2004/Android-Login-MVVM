@@ -5,21 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
-import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.activities.MainActivity
-import com.android.mvvmdatabind2.activities.Userdata.AddUserData
 import com.android.mvvmdatabind2.activities.auth.LoginActivity
-import com.android.mvvmdatabind2.others.Constants.DEFAULT_IMAGE_PROFILE
 import com.android.mvvmdatabind2.others.Constants.USERS
 import com.android.mvvmdatabind2.others.Constants.USER_EMAIL
 import com.android.mvvmdatabind2.others.Constants.USER_ID
 import com.android.mvvmdatabind2.others.Constants.USER_NAME
-import com.android.mvvmdatabind2.others.Constants.USER_PHONENUMBER
-import com.android.mvvmdatabind2.others.Constants.USER_PROFILE_IMAGE
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -36,7 +27,6 @@ class AuthRepository(private var context: Context) : BaseRepository(context) {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         if (mAuth.currentUser!!.isEmailVerified) {
-                            val user = mAuth.currentUser
                             Toast.makeText(context, "Signed In as $email", Toast.LENGTH_SHORT).show()
                             Intent(context, MainActivity::class.java).also {
                                 it.flags =
@@ -44,7 +34,6 @@ class AuthRepository(private var context: Context) : BaseRepository(context) {
                                 context.startActivity(it)
                             }
                         } else {
-                            val user2 = mAuth.currentUser
                             Toast.makeText(context, "First Verify Your Email", Toast.LENGTH_SHORT)
                                 .show()
                         }
@@ -59,12 +48,11 @@ class AuthRepository(private var context: Context) : BaseRepository(context) {
     }
 
 
-    fun forgotPassword(email: String, password: String) {
-        mAuth.confirmPasswordReset(email, password).addOnCompleteListener {
-            if (it.isSuccessful) {
-                Log.d(TAG, "forgotPassword: Password Has Been Reset")
-            } else {
-                Log.d(TAG, "forgotPassword: ${it.exception?.message}")
+    fun forgotPassword(email: String) {
+        if (email.isNotEmpty())
+        {
+            mAuth.sendPasswordResetEmail(email).addOnCompleteListener {
+
             }
         }
     }

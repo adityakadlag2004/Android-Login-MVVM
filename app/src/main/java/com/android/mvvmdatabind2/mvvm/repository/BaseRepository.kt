@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.android.mvvmdatabind2.activities.Userdata.AddUserData
 import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.android.mvvmdatabind2.others.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -51,5 +52,13 @@ abstract class BaseRepository(var contextBase: Context) {
             })
         }
         return userdataBase
+    }
+
+    fun sendUserToAddUserData() {
+        Intent(contextBase, AddUserData::class.java).also {
+            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            contextBase.startActivity(it)
+
+        }
     }
 }
