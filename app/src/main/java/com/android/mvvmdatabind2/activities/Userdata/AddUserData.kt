@@ -61,6 +61,7 @@ class AddUserData : AppCompatActivity() {
                     viewModel.uploadToFirebase(imageUri!!)
                     progress_bar_data.visibility = View.VISIBLE
                 } else {
+                    myRef.child(currentuser!!.uid).child(Constants.USER_PROFILE_IMAGE).setValue(Constants.DEFAULT_IMAGE_PROFILE)
                     viewModel.sendUserToMainActivity()
                 }
             } else {

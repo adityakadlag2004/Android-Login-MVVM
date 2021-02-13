@@ -12,9 +12,7 @@ import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
 import com.android.mvvmdatabind2.di.modules.FactoryModule
 import com.android.mvvmdatabind2.di.modules.RepositoryModule
-import com.android.mvvmdatabind2.mvvm.repository.MainRepository
 import com.android.mvvmdatabind2.mvvm.repository.UserDataRepo
-import com.android.mvvmdatabind2.mvvm.viewmodels.MainViewModel
 import com.android.mvvmdatabind2.mvvm.viewmodels.UserDataViewModel
 import com.android.mvvmdatabind2.others.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -24,9 +22,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_add_user_data.*
 import kotlinx.android.synthetic.main.activity_edit_profile.*
-import kotlinx.android.synthetic.main.fragment_frag_first.*
 
 class EditProfile : AppCompatActivity() {
     private var phoneNumber: String = ""
