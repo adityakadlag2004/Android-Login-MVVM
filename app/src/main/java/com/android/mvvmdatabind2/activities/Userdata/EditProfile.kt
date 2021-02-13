@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_add_user_data.*
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import kotlinx.android.synthetic.main.fragment_frag_first.*
 
 class EditProfile : AppCompatActivity() {
     private var phoneNumber: String = ""
@@ -70,6 +71,10 @@ class EditProfile : AppCompatActivity() {
                 viewModel.updateUser(name.toString(), phone.toString())
                 if (imageUri != null) {
                     viewModel.uploadToFirebase(imageUri as Uri)
+                }
+                if (imageUri==null)
+                {
+                    viewModel.sendUserToMainActivity()
                 }
             } else {
                 Toast.makeText(this, "Fill the Fields", Toast.LENGTH_SHORT).show()
