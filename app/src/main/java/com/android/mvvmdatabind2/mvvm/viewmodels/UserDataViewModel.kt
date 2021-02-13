@@ -19,5 +19,10 @@ class UserDataViewModel(var repository:UserDataRepo) :ViewModel() {
         repository.sendUserToMainActivity()
     }
 
+    fun updateUser(username:String?=null,contactnumber:String?=null)
+    {
+       repository.updateUser(username,contactnumber)
+    }
+
 
 }

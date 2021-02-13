@@ -4,6 +4,7 @@ import android.content.Context
 import com.android.mvvmdatabind2.mvvm.repository.AuthRepository
 import com.android.mvvmdatabind2.mvvm.repository.BaseRepository
 import com.android.mvvmdatabind2.mvvm.repository.MainRepository
+import com.android.mvvmdatabind2.mvvm.repository.UserDataRepo
 import dagger.Module
 import dagger.Provides
 
@@ -17,6 +18,11 @@ class RepositoryModule constructor(var context: Context){
     @Provides
     fun provideMainRepository(): BaseRepository {
         return MainRepository(context = context)
+    }
+
+    @Provides
+    fun provideDataRepository(): BaseRepository {
+        return UserDataRepo(context = context)
     }
 
 }

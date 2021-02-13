@@ -1,11 +1,21 @@
 package com.android.mvvmdatabind2.activities.Userdata
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
+import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
+import com.android.mvvmdatabind2.di.modules.FactoryModule
+import com.android.mvvmdatabind2.di.modules.RepositoryModule
+import com.android.mvvmdatabind2.mvvm.repository.MainRepository
+import com.android.mvvmdatabind2.mvvm.repository.UserDataRepo
+import com.android.mvvmdatabind2.mvvm.viewmodels.MainViewModel
+import com.android.mvvmdatabind2.mvvm.viewmodels.UserDataViewModel
 import com.android.mvvmdatabind2.others.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -14,16 +24,19 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_add_user_data.*
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 
 class EditProfile : AppCompatActivity() {
-    private var phoneNumber: String=""
+    private var phoneNumber: String = ""
     var imageUri: Uri? = null
     private var currentuser: FirebaseUser? = null
-    private var username: String=""
-    private var profileImg: String=""
+    private var username: String = ""
+    private lateinit var component: DaggerFactoryComponent
+    private var profileImg: String = ""
     var database = FirebaseDatabase.getInstance()
     private val TAG = "EditProfile"
+    private lateinit var viewModel: UserDataViewModel
     var myRef = database.getReference(Constants.USERS)
     private var mAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +45,36 @@ class EditProfile : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         currentuser = mAuth.currentUser
         getData()
+        component = DaggerFactoryComponent.builder()
+            .repositoryModule(RepositoryModule(this))
+            .factoryModule(FactoryModule(UserDataRepo(this)))
+            .build() as DaggerFactoryComponent
+        viewModel = ViewModelProviders.of(this, component.getFactory())
+            .get(UserDataViewModel::class.java)
+
+        change_photo_EditProfile.setOnClickListener {
+            val galleryIntent = Intent()
+            galleryIntent.apply {
+                action = Intent.ACTION_GET_CONTENT
+                type = "image/*"
+                startActivityForResult(galleryIntent, 2)
+            }
+
+
+        }
+        btn_continue_data_EditProfile.setOnClickListener {
+            val name = addName_data_EditProfile.text
+            val phone = addPhone_data_EditProfile.text
+
+            if (name!!.isNotEmpty() && phone.isNotEmpty()) {
+                viewModel.updateUser(name.toString(), phone.toString())
+                if (imageUri != null) {
+                    viewModel.uploadToFirebase(imageUri as Uri)
+                }
+            } else {
+                Toast.makeText(this, "Fill the Fields", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     fun getData() {
@@ -55,6 +98,14 @@ class EditProfile : AppCompatActivity() {
                     Log.d(TAG, "onCancelled: ${error.message}")
                 }
             })
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
+            imageUri = data.data!!
+            profileImage_EditProfile.setImageURI(imageUri)
         }
     }
 }

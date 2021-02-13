@@ -125,7 +125,7 @@ class RegisterActivity : AppCompatActivity() {
                         )
                         myRef.child(user.uid).child(Constants.USER_ID).setValue(user.uid)
                     }
-                    Intent(this, AddUserData::class.java).also {
+                    Intent(this, MainActivity::class.java).also {
                         startActivity(it)
                         finish()
                     }

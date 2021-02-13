@@ -11,6 +11,7 @@ import com.android.mvvmdatabind2.activities.Userdata.EditProfile
 import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.android.mvvmdatabind2.others.Constants
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -23,7 +24,7 @@ abstract class BaseRepository(var contextBase: Context) {
     var username2Base = MutableLiveData<String>()
     var profileImageBase = MutableLiveData<String>()
     var userdataBase = MutableLiveData<String>()
-
+    var curUser=mAuthBase.currentUser
     fun signOut() {
         mAuthBase = FirebaseAuth.getInstance()
 
@@ -124,5 +125,18 @@ abstract class BaseRepository(var contextBase: Context) {
         Intent(contextBase, EditProfile::class.java).also {
             contextBase.startActivity(it)
         }
+    }
+
+    fun updateUser(username: String?=null, contactnumber: String?=null) {
+    curUser=mAuthBase.currentUser
+    if (curUser!=null)
+    {
+        if (!username.isNullOrEmpty())
+        myRefBase.child(curUser!!.uid).child(Constants.USER_NAME).setValue(username)
+
+
+        if (!contactnumber.isNullOrEmpty())
+        myRefBase.child(curUser!!.uid).child(Constants.USER_PHONENUMBER).setValue(contactnumber)
+    }
     }
 }
