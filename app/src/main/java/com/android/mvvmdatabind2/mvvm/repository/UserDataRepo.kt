@@ -1,7 +1,9 @@
 package com.android.mvvmdatabind2.mvvm.repository
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import com.android.mvvmdatabind2.others.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -10,15 +12,15 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 class UserDataRepo(var context: Context) : BaseRepository(context) {
-    var database = FirebaseDatabase.getInstance()
-    var myRef = database.getReference(Constants.USERS)
+    private var database = FirebaseDatabase.getInstance()
+    private var myRef = database.getReference(Constants.USERS)
     private var mAuth = FirebaseAuth.getInstance()
-    var storage = FirebaseStorage.getInstance()
-    var storageRef: StorageReference = storage.getReference(Constants.USERS)
+    private var storage = FirebaseStorage.getInstance()
+    private var storageRef: StorageReference = storage.getReference(Constants.USERS)
     private var currentuser: FirebaseUser? = null
 
 
-     fun uploadToFirebase(uri: Uri) {
+    fun uploadToFirebase(uri: Uri) {
         currentuser = mAuth.currentUser
         if (currentuser != null) {
             val fileReference: StorageReference = storageRef.child(currentuser!!.uid)
@@ -32,14 +34,9 @@ class UserDataRepo(var context: Context) : BaseRepository(context) {
                         sendUserToMainActivity()
                     }
                 }
-                .addOnProgressListener {
-
-                }
-                .addOnFailureListener { TODO("Not yet implemented") }
+                .addOnFailureListener { Log.d(TAG, "uploadToFirebase: Failed Uploading") }
         }
     }
-
-
 
 
 }
