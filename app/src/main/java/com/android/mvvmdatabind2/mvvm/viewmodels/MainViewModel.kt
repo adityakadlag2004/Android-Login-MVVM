@@ -32,4 +32,8 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
     fun sendUsertoAddUserDataActivity() {
         repository.sendUserToAddUserData()
     }
+
+    fun sendUsertoEditProfileActivity() {
+        repository.sendUserToEditProfile()
+    }
 }

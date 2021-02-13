@@ -103,6 +103,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.menu_profile -> {
+                viewModel.sendUsertoEditProfileActivity()
                 return true
             }
 
