@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.android.mvvmdatabind2.activities.MainActivity
 import com.android.mvvmdatabind2.activities.Userdata.AddUserData
 import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.android.mvvmdatabind2.others.Constants
@@ -104,5 +105,11 @@ abstract class BaseRepository(var contextBase: Context) {
 
         Log.d(ContentValues.TAG, "onDataChange: Last Repo$username2Base ")
         return profileImageBase
+    }
+    fun sendUserToMainActivity() {
+        Intent(contextBase, MainActivity::class.java).also {
+            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            contextBase.startActivity(it)
+        }
     }
 }

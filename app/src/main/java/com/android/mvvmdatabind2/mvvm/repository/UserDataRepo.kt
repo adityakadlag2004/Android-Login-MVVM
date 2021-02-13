@@ -1,16 +1,13 @@
 package com.android.mvvmdatabind2.mvvm.repository
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
-import com.android.mvvmdatabind2.activities.MainActivity
 import com.android.mvvmdatabind2.others.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.android.synthetic.main.activity_add_user_data.*
 
 class UserDataRepo(var context: Context) : BaseRepository(context) {
     var database = FirebaseDatabase.getInstance()
@@ -21,7 +18,7 @@ class UserDataRepo(var context: Context) : BaseRepository(context) {
     private var currentuser: FirebaseUser? = null
 
 
-    suspend fun uploadToFirebase(uri: Uri) {
+     fun uploadToFirebase(uri: Uri) {
         currentuser = mAuth.currentUser
         if (currentuser != null) {
             val fileReference: StorageReference = storageRef.child(currentuser!!.uid)
@@ -42,21 +39,7 @@ class UserDataRepo(var context: Context) : BaseRepository(context) {
         }
     }
 
-    fun sendUserToMainActivity() {
-        Intent(context, MainActivity::class.java).also {
-            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            context.startActivity(it)
-        }
-    }
 
-    fun addUserNameAndPhoneNumber(name: String, phonenumber: String) {
-        val user=mAuth.currentUser
-        if (currentuser!=null)
-        {
-            myRef.child(currentuser!!.uid).child(Constants.USER_NAME)
-                .setValue(name)
-            myRef.child(currentuser!!.uid).child(Constants.USER_PHONENUMBER)
-                .setValue(phonenumber)
-        }
-    }
+
+
 }
