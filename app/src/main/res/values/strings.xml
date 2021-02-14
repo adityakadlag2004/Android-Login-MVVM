@@ -37,4 +37,5 @@
     <string name="continue2">Continue</string>
     <string name="title">Title</string>
     <string name="booked_date">Booked Date</string>
+    <string name="till_date">Till Date</string>
 </resources>
