@@ -13,11 +13,11 @@
     <color name="gradient_end_color">#18a3fe</color>
 
 
-    <!-- colors for tab and screent text -->
 
     <color name="tab_indicator_gray">#c0c0c0</color>
     <color name="intro_title_color">#000000</color>
     <color name="intro_description_color">#656565</color>
     <color name="grey">#392A2A</color>
     <color name="blue">#2455ab</color>
+    <color name="faintGray">#d3d3d3</color>
 </resources>
