@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!--<layout-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -26,7 +28,13 @@
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize">
 
+        </androidx.recyclerview.widget.RecyclerView>
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_Main"
             android:layout_width="wrap_content"
@@ -39,5 +47,18 @@
             app:menu="@menu/maindrawer" />
 
 
+
+
     </androidx.drawerlayout.widget.DrawerLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        app:fabSize="normal"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20sp"
+        android:src="@drawable/ic_plus"
+        android:contentDescription="@string/todo"
+        android:layout_alignParentRight="true" />
 </RelativeLayout>
