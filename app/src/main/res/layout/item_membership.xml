@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="175dp">
+    android:layout_height="175dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:cardElevation="3dp"
+        app:cardCornerRadius="9dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -29,6 +31,19 @@
             android:textSize="18sp"
             android:layout_marginTop="40dp"
             android:layout_toRightOf="@+id/item_imageView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_BookedDate"
+                android:layout_toEndOf="@+id/item_imageView"
+                android:layout_below="@+id/item_title"
+                android:text="@string/booked_date"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/item_imageView" />
+
 
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -36,4 +36,5 @@
     <string name="change_profile_photo">Change Profile Photo</string>
     <string name="continue2">Continue</string>
     <string name="title">Title</string>
+    <string name="booked_date">Booked Date</string>
 </resources>
