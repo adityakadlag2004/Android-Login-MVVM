@@ -22,8 +22,10 @@ abstract class BaseRepository(var contextBase: Context) {
     var databaseBase = FirebaseDatabase.getInstance()
     var myRefBase = databaseBase.getReference(Constants.USERS)
     var username2Base = MutableLiveData<String>()
+    var emailBase = MutableLiveData<String>()
     var profileImageBase = MutableLiveData<String>()
     var userdataBase = MutableLiveData<String>()
+    var count2 = MutableLiveData<String>()
     var curUser=mAuthBase.currentUser
     fun signOut() {
         mAuthBase = FirebaseAuth.getInstance()
@@ -74,8 +76,7 @@ abstract class BaseRepository(var contextBase: Context) {
                         if (snapshot.exists()) {
                             username2Base.value =
                                 snapshot.child(Constants.USER_NAME).value.toString()
-                            profileImageBase.value =
-                                snapshot.child(Constants.USER_PROFILE_IMAGE).value.toString()
+
                             Log.d(ContentValues.TAG, "onDataChange: Repo$username2Base")
                         }
 
@@ -89,6 +90,30 @@ abstract class BaseRepository(var contextBase: Context) {
 
         Log.d(ContentValues.TAG, "onDataChange: Last Repo$username2Base ")
         return username2Base
+    }
+
+
+    fun getEmail(): MutableLiveData<String> {
+        val user = mAuthBase.currentUser
+        if (user != null && username2Base.value.isNullOrEmpty()) {
+            myRefBase.child(mAuthBase.currentUser!!.uid)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            emailBase.value =
+                                snapshot.child(Constants.USER_EMAIL).value.toString()
+                        }
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.d(ContentValues.TAG, "onCancelled: Fail")
+                    }
+                })
+        }
+
+        Log.d(ContentValues.TAG, "onDataChange: Last Repo$emailBase ")
+        return emailBase
     }
 
     fun getImage(): MutableLiveData<String> {
@@ -138,5 +163,30 @@ abstract class BaseRepository(var contextBase: Context) {
         if (!contactnumber.isNullOrEmpty())
         myRefBase.child(curUser!!.uid).child(Constants.USER_PHONENUMBER).setValue(contactnumber)
     }
+    }
+
+
+    fun getMembershipCount(): MutableLiveData<String> {
+        val user = mAuthBase.currentUser
+        if (user != null && username2Base.value.isNullOrEmpty()) {
+            myRefBase.child(mAuthBase.currentUser!!.uid)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            count2.value = snapshot.child(Constants.USER_MEMBERSHIP_COUNT).value.toString()
+
+                            Log.d(ContentValues.TAG, "onDataChange: Repo$username2Base")
+                        }
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.d(ContentValues.TAG, "onCancelled: Fail")
+                    }
+                })
+        }
+
+        Log.d(ContentValues.TAG, "onDataChange: Last Repo$count2 ")
+        return count2
     }
 }

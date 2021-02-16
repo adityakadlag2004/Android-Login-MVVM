@@ -12,7 +12,6 @@
     <string name="last">Last</string>
     <string name="id">ID</string>
     <string name="todo">TODO</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="manage_all_memberships_in_one_place">Manage all MemberShips In One Place</string>
     <string name="desc11">Compare reviews, Features, Make Online payments with the app that manages your memberships</string>
@@ -31,11 +30,16 @@
     <string name="logout">Logout</string>
     <string name="navigation_drawer_open">Open navigation Drawer</string>
     <string name="navigation_drawer_close">Close navigation Drawer</string>
-    <string name="username">username</string>
-    <string name="profile">Profile</string>
+    <string name="username">Username</string>
     <string name="change_profile_photo">Change Profile Photo</string>
     <string name="continue2">Continue</string>
     <string name="title">Title</string>
     <string name="booked_date">Booked Date</string>
     <string name="till_date">Till Date</string>
+    <string name="search">Search</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="_10">0</string>
+    <string name="edit">Edit</string>
+    <string name="inactive">Inactive</string>
 </resources>

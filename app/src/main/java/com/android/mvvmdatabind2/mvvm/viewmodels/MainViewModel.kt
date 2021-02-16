@@ -24,6 +24,13 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
         return repository.getImage()
     }
 
+    fun getEmail(): LiveData<String> {
+        return repository.getEmail()
+    }
+    fun getMemberShipCount(): LiveData<String> {
+        return repository.getMembershipCount()
+    }
+
     fun checkUserHasData():LiveData<String>
     {
       return repository.checkUserHasData()

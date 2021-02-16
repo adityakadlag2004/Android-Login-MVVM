@@ -52,16 +52,20 @@ class AddUserData : AppCompatActivity() {
 
         btn_continue_data.setOnClickListener {
             if (addName_data.text!!.isNotEmpty() && addPhone_data.text.isNotEmpty()) {
+                progress_bar_data.visibility = View.VISIBLE
+
 
                 myRef.child(currentuser!!.uid).child(Constants.USER_NAME)
                     .setValue(addName_data.text.toString())
                 myRef.child(currentuser!!.uid).child(Constants.USER_PHONENUMBER)
                     .setValue(addPhone_data.text.toString())
+                myRef.child(currentuser!!.uid).child(Constants.USER_MEMBERSHIP_COUNT).setValue("0")
                 if (imageUri != null) {
                     viewModel.uploadToFirebase(imageUri!!)
                     progress_bar_data.visibility = View.VISIBLE
                 } else {
-                    myRef.child(currentuser!!.uid).child(Constants.USER_PROFILE_IMAGE).setValue(Constants.DEFAULT_IMAGE_PROFILE)
+                    myRef.child(currentuser!!.uid).child(Constants.USER_PROFILE_IMAGE)
+                        .setValue(Constants.DEFAULT_IMAGE_PROFILE)
                     viewModel.sendUserToMainActivity()
                 }
             } else {
@@ -81,8 +85,6 @@ class AddUserData : AppCompatActivity() {
             profileImage_Data.setImageURI(imageUri)
         }
     }
-
-
 
 
 }
