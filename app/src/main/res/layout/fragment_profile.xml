@@ -28,150 +28,176 @@
             app:cardCornerRadius="10dp"
             tools:targetApi="lollipop">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
-                        android:layout_marginLeft="20sp"
-                        android:gravity="center_horizontal"
-                        android:text="@string/username"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/usernameFrag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_horizontal"
-                        android:text="@string/username"
-                        android:textAlignment="center"
-                        android:textColor="@color/grey"
-                        android:textSize="15sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-
-                    android:orientation="vertical">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
-                        android:layout_marginLeft="20sp"
                         android:layout_marginTop="20dp"
-                        android:gravity="center_horizontal"
-                        android:text="@string/email"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:orientation="vertical">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/emailFrag"
-                        android:layout_width="wrap_content"
+                        <!--                    <com.google.android.material.textview.MaterialTextView-->
+                        <!--                        android:layout_width="wrap_content"-->
+                        <!--                        android:layout_height="wrap_content"-->
+                        <!--                        android:layout_marginStart="20sp"-->
+                        <!--                        android:layout_marginLeft="20sp"-->
+                        <!--                        android:gravity="center_horizontal"-->
+                        <!--                        android:text="@string/username"-->
+                        <!--                        android:textAlignment="center"-->
+                        <!--                        android:textColor="@color/black"-->
+                        <!--                        android:textSize="18sp" />-->
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/usernameFrag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:drawableStart="@drawable/ic_baseline_person_24"
+                            android:drawableLeft="@drawable/ic_enail"
+                            android:drawablePadding="10dp"
+                            android:gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:text="@string/username"
+                            android:textAlignment="center"
+                            android:textColor="@color/grey"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_horizontal"
-                        android:text="@string/email"
-                        android:textAlignment="center"
-                        android:textColor="@color/grey"
-                        android:textSize="15sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-
-                    android:orientation="vertical">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
-                        android:layout_marginLeft="20sp"
                         android:layout_marginTop="20dp"
-                        android:gravity="center_horizontal"
-                        android:text="@string/contact_number"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/phoneFrag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_horizontal"
-                        android:text="@string/phone_number"
-                        android:textAlignment="center"
-                        android:textColor="@color/grey"
-                        android:textSize="15sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:orientation="vertical">
+                        android:orientation="vertical">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
+                        <!--                    <com.google.android.material.textview.MaterialTextView-->
+                        <!--                        android:layout_width="wrap_content"-->
+                        <!--                        android:layout_height="wrap_content"-->
+                        <!--                        android:layout_marginStart="20sp"-->
+                        <!--                        android:layout_marginLeft="20sp"-->
+                        <!--                        android:layout_marginTop="20dp"-->
+                        <!--                        android:gravity="center_horizontal"-->
+                        <!--                        android:text="@string/email"-->
+                        <!--                        android:textAlignment="center"-->
+                        <!--                        android:textColor="@color/black"-->
+                        <!--                        android:textSize="18sp" />-->
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/emailFrag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:drawableStart="@drawable/ic_enail"
+                            android:drawableLeft="@drawable/ic_enail"
+                            android:drawablePadding="10dp"
+                            android:gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:text="@string/email"
+                            android:textAlignment="center"
+                            android:textColor="@color/grey"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
-                        android:layout_marginLeft="20sp"
-                        android:gravity="center_horizontal"
                         android:layout_marginTop="20dp"
-                        android:text="@string/memberships"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
+                        android:orientation="vertical">
+
+                        <!--                    <com.google.android.material.textview.MaterialTextView-->
+                        <!--                        android:layout_width="wrap_content"-->
+                        <!--                        android:layout_height="wrap_content"-->
+                        <!--                        android:layout_marginStart="20sp"-->
+                        <!--                        android:layout_marginLeft="20sp"-->
+                        <!--                        android:layout_marginTop="20dp"-->
+                        <!--                        android:gravity="center_horizontal"-->
+                        <!--                        android:text="@string/contact_number"-->
+                        <!--                        android:textAlignment="center"-->
+                        <!--                        android:textColor="@color/black"-->
+                        <!--                        android:textSize="18sp" />-->
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/phoneFrag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:drawableStart="@drawable/ic_baseline_phone_android_24"
+                            android:drawableLeft="@drawable/ic_baseline_phone_android_24"
+                            android:drawablePadding="10dp"
+                            android:gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:text="@string/phone_number"
+
+                            android:textAlignment="center"
+                            android:textColor="@color/grey"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
-                        android:id="@+id/memCount"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_horizontal"
-                        android:text="@string/_10"
-                        android:textAlignment="center"
-                        android:textColor="@color/grey"
-                        android:textSize="15sp" />
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical">
+
+                        <!--                    <com.google.android.material.textview.MaterialTextView-->
+                        <!--                        android:layout_width="wrap_content"-->
+                        <!--                        android:layout_height="wrap_content"-->
+                        <!--                        android:layout_marginStart="20sp"-->
+                        <!--                        android:layout_marginLeft="20sp"-->
+                        <!--                        android:gravity="center_horizontal"-->
+                        <!--                        android:layout_marginTop="20dp"-->
+                        <!--                        android:text="@string/memberships"-->
+                        <!--                        android:textAlignment="center"-->
+                        <!--                        android:textColor="@color/black"-->
+                        <!--                        android:textSize="18sp" />-->
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/memCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:drawableStart="@drawable/ic_history"
+                            android:drawableLeft="@drawable/ic_history"
+                            android:drawablePadding="10dp"
+                            android:gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:text="@string/_10"
+                            android:textAlignment="center"
+                            android:textColor="@color/grey"
+                            android:textSize="15sp" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+            </ScrollView>
         </androidx.cardview.widget.CardView>
 
         <Button
+            android:id="@+id/btn_edit_profile_frag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_edit_profile_frag"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="80dp"
             android:layout_marginEnd="120dp"
             android:background="@drawable/btn_circular"
+            android:gravity="center_horizontal"
             android:text="@string/edit"
-            android:textAllCaps="false"
             android:textAlignment="center"
-            android:layout_marginTop="80dp"
-            android:layout_marginStart="120dp"
-            android:gravity="center_horizontal" />
+            android:textAllCaps="false" />
 
     </LinearLayout>
 
