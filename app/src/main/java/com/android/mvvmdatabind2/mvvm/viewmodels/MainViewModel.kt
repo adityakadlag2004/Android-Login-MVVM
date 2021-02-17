@@ -43,4 +43,8 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
     fun sendUsertoEditProfileActivity() {
         repository.sendUserToEditProfile()
     }
+
+    fun getPhone(): LiveData<String> {
+        return repository.getPhone()
+    }
 }

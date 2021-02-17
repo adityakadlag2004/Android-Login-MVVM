@@ -49,6 +49,20 @@ class EditProfile : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(UserDataViewModel::class.java)
 
+
+//        if (currentuser!=null)
+//        {emailFrag.text= currentuser!!.email}
+        viewModel.getUsername().observe(this, {
+            addName_data_EditProfile.setText(it.toString())
+        })
+
+
+        viewModel.getImage().observe(this, {
+            Picasso.get().load(it.toUri()).into(profileImage_EditProfile)
+        })
+
+
+
         change_photo_EditProfile.setOnClickListener {
             val galleryIntent = Intent()
             galleryIntent.apply {

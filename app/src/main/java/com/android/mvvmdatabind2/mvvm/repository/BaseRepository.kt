@@ -24,6 +24,7 @@ abstract class BaseRepository(var contextBase: Context) {
     var username2Base = MutableLiveData<String>()
     var emailBase = MutableLiveData<String>()
     var profileImageBase = MutableLiveData<String>()
+    var phone2 = MutableLiveData<String>()
     var userdataBase = MutableLiveData<String>()
     var count2 = MutableLiveData<String>()
     var curUser=mAuthBase.currentUser
@@ -39,6 +40,28 @@ abstract class BaseRepository(var contextBase: Context) {
 
     }
 
+    fun getPhone(): MutableLiveData<String> {
+        val user = mAuthBase.currentUser
+        if (user != null && username2Base.value.isNullOrEmpty()) {
+            myRefBase.child(mAuthBase.currentUser!!.uid)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            phone2.value =
+                                snapshot.child(Constants.USER_PHONENUMBER).value.toString()
+                        }
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.d(ContentValues.TAG, "onCancelled: Fail")
+                    }
+                })
+        }
+
+        Log.d(ContentValues.TAG, "onDataChange: Last Repo$phone2 ")
+        return phone2
+    }
     fun checkUserHasData(): MutableLiveData<String> {
         val user = mAuthBase.currentUser
         if (user != null) {
@@ -189,4 +212,8 @@ abstract class BaseRepository(var contextBase: Context) {
         Log.d(ContentValues.TAG, "onDataChange: Last Repo$count2 ")
         return count2
     }
+
+
+
+
 }

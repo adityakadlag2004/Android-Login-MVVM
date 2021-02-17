@@ -1,15 +1,18 @@
 package com.android.mvvmdatabind2.fragments.homepage
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
+import com.android.mvvmdatabind2.activities.Userdata.EditProfile
 import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
 import com.android.mvvmdatabind2.di.modules.FactoryModule
 import com.android.mvvmdatabind2.di.modules.RepositoryModule
@@ -50,8 +53,16 @@ class Profile : Fragment() {
             .get(MainViewModel::class.java)
 //        if (currentuser!=null)
 //        {emailFrag.text= currentuser!!.email}
+        view.findViewById<Button>(R.id.btn_edit_profile_frag).setOnClickListener {
+            viewModel.sendUsertoEditProfileActivity()
+
+        }
+
         viewModel.getUsername().observe(viewLifecycleOwner, {
             usernameFrag.text = it.toString()
+        })
+        viewModel.getPhone().observe(viewLifecycleOwner, {
+            phoneFrag.text = it.toString()
         })
         viewModel.getEmail().observe(viewLifecycleOwner, {
             emailFrag.text = it.toString()
@@ -64,8 +75,8 @@ class Profile : Fragment() {
             memCount.text = it.toString()
         })
 
-
         return view
+
     }
 
 }
