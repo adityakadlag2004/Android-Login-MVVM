@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        bottomNavigationView.setOnNavigationItemSelectedListener {
+        bottomNavView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.miHome -> setCurrentFragment(homeFragment)
 
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.miSearch -> setCurrentFragment(serachFragment)
 
-                R.id.miSettings -> setCurrentFragment(settings)
+
 
             }
             true
@@ -71,7 +71,6 @@ class MainActivity : AppCompatActivity() {
             .build() as DaggerFactoryComponent
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(MainViewModel::class.java)
-        bottomNavigationView.menu[2].isEnabled = false
 
         setCurrentFragment(homeFragment)
 
