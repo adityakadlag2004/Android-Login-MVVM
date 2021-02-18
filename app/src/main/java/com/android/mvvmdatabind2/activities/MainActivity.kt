@@ -3,7 +3,6 @@ package com.android.mvvmdatabind2.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
@@ -13,7 +12,6 @@ import com.android.mvvmdatabind2.di.modules.RepositoryModule
 import com.android.mvvmdatabind2.fragments.homepage.Home
 import com.android.mvvmdatabind2.fragments.homepage.Profile
 import com.android.mvvmdatabind2.fragments.homepage.Search
-import com.android.mvvmdatabind2.fragments.homepage.Settings
 import com.android.mvvmdatabind2.mvvm.repository.MainRepository
 import com.android.mvvmdatabind2.mvvm.viewmodels.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -28,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     val homeFragment = Home()
     val serachFragment = Search()
     val profileFragment = Profile()
-    val settings = Settings()
     private val TAG = "MainActivity"
     private var currentuser: FirebaseUser? = null
     override fun onCreate(savedInstanceState: Bundle?) {
