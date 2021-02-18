@@ -13,6 +13,7 @@ import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.activities.Userdata.EditProfile
+import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
 import com.android.mvvmdatabind2.di.modules.FactoryModule
 import com.android.mvvmdatabind2.di.modules.RepositoryModule
@@ -55,6 +56,15 @@ class Profile : Fragment() {
 //        {emailFrag.text= currentuser!!.email}
         view.findViewById<Button>(R.id.btn_edit_profile_frag).setOnClickListener {
             viewModel.sendUsertoEditProfileActivity()
+
+        }
+
+        view.findViewById<TextView>(R.id.logoutText).setOnClickListener {
+           viewModel.logout()
+            Intent(context,LoginActivity::class.java).also {
+                startActivity(it)
+
+            }
 
         }
 

@@ -14,18 +14,7 @@
 
         </FrameLayout>
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="25sp"-->
-<!--        android:src="@drawable/ic_plus"-->
-<!--        android:id="@+id/fabMain"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:layout_above="@id/bottomNavView"-->
-<!--        android:layout_alignParentRight="true"-->
-<!--        android:contentDescription="@string/todo">-->
 
-<!--    </com.google.android.material.floatingactionbutton.FloatingActionButton>-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

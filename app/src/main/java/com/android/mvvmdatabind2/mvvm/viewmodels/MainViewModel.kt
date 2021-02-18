@@ -47,4 +47,8 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
     fun getPhone(): LiveData<String> {
         return repository.getPhone()
     }
+
+    fun logout() {
+        repository.logout()
+    }
 }

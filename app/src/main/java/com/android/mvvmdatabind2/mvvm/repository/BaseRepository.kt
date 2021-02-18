@@ -27,7 +27,7 @@ abstract class BaseRepository(var contextBase: Context) {
     var phone2 = MutableLiveData<String>()
     var userdataBase = MutableLiveData<String>()
     var count2 = MutableLiveData<String>()
-    var curUser=mAuthBase.currentUser
+    var curUser = mAuthBase.currentUser
     fun signOut() {
         mAuthBase = FirebaseAuth.getInstance()
 
@@ -62,6 +62,7 @@ abstract class BaseRepository(var contextBase: Context) {
         Log.d(ContentValues.TAG, "onDataChange: Last Repo$phone2 ")
         return phone2
     }
+
     fun checkUserHasData(): MutableLiveData<String> {
         val user = mAuthBase.currentUser
         if (user != null) {
@@ -175,17 +176,17 @@ abstract class BaseRepository(var contextBase: Context) {
         }
     }
 
-    fun updateUser(username: String?=null, contactnumber: String?=null) {
-    curUser=mAuthBase.currentUser
-    if (curUser!=null)
-    {
-        if (!username.isNullOrEmpty())
-        myRefBase.child(curUser!!.uid).child(Constants.USER_NAME).setValue(username)
+    fun updateUser(username: String? = null, contactnumber: String? = null) {
+        curUser = mAuthBase.currentUser
+        if (curUser != null) {
+            if (!username.isNullOrEmpty())
+                myRefBase.child(curUser!!.uid).child(Constants.USER_NAME).setValue(username)
 
 
-        if (!contactnumber.isNullOrEmpty())
-        myRefBase.child(curUser!!.uid).child(Constants.USER_PHONENUMBER).setValue(contactnumber)
-    }
+            if (!contactnumber.isNullOrEmpty())
+                myRefBase.child(curUser!!.uid).child(Constants.USER_PHONENUMBER)
+                    .setValue(contactnumber)
+        }
     }
 
 
@@ -196,7 +197,8 @@ abstract class BaseRepository(var contextBase: Context) {
                 .addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
-                            count2.value = snapshot.child(Constants.USER_MEMBERSHIP_COUNT).value.toString()
+                            count2.value =
+                                snapshot.child(Constants.USER_MEMBERSHIP_COUNT).value.toString()
 
                             Log.d(ContentValues.TAG, "onDataChange: Repo$username2Base")
                         }
@@ -212,6 +214,11 @@ abstract class BaseRepository(var contextBase: Context) {
         Log.d(ContentValues.TAG, "onDataChange: Last Repo$count2 ")
         return count2
     }
+
+    fun logout() {
+        mAuthBase.signOut()
+    }
+
 
 
 
