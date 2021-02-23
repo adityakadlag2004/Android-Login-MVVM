@@ -48,7 +48,7 @@ class UserDataViewModel(var repository:UserDataRepo) :ViewModel() {
     }
 
     fun getMemberships():LiveData<ArrayList<Membership>> {
-        return userMemberShips
+        return repository.getmemberShips()
     }
 
 

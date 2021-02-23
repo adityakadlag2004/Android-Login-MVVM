@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.mvvmdatabind2.others.Constants
 import com.android.mvvmdatabind2.others.models.Membership
@@ -50,6 +51,15 @@ class UserDataRepo(var context: Context) : BaseRepository(context) {
                 }
                 .addOnFailureListener { Log.d(TAG, "uploadToFirebase: Failed Uploading") }
         }
+    }
+
+    fun getmemberShips(): MutableLiveData<ArrayList<Membership>> {
+    loadMemberShips()
+    return userMemberships
+    }
+
+    private fun loadMemberShips() {
+
     }
 
 

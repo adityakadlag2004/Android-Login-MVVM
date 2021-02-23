@@ -12,9 +12,9 @@ import com.android.mvvmdatabind2.R
 import com.android.mvvmdatabind2.others.models.Membership
 import com.squareup.picasso.Picasso
 
-class MembershipsAdapter : RecyclerView.Adapter<MembershipsAdapter.ViewHolder>() {
+class MembershipsAdapter(list:ArrayList<Membership>) : RecyclerView.Adapter<MembershipsAdapter.ViewHolder>() {
 
-    var membershipList = ArrayList<Membership>()
+    var membershipList = list
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
