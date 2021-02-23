@@ -4,15 +4,18 @@ import android.content.ContentValues
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.mvvmdatabind2.mvvm.repository.BaseRepository
 import com.android.mvvmdatabind2.mvvm.repository.UserDataRepo
+import com.android.mvvmdatabind2.others.models.Membership
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 class UserDataViewModel(var repository:UserDataRepo) :ViewModel() {
 
+    var userMemberShips = MutableLiveData<ArrayList<Membership>>()
     fun uploadToFirebase(uri: Uri){
       CoroutineScope(IO).launch {
           repository.uploadToFirebase(uri)
@@ -42,6 +45,10 @@ class UserDataViewModel(var repository:UserDataRepo) :ViewModel() {
     }
     fun getMemberShipCount(): LiveData<String> {
         return repository.getMembershipCount()
+    }
+
+    fun getMemberships():LiveData<ArrayList<Membership>> {
+        return userMemberShips
     }
 
 

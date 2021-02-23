@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
-import com.android.mvvmdatabind2.activities.Userdata.EditProfile
 import com.android.mvvmdatabind2.activities.auth.LoginActivity
 import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
 import com.android.mvvmdatabind2.di.modules.FactoryModule
@@ -44,7 +43,6 @@ class Profile : Fragment() {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         mAuth = FirebaseAuth.getInstance()
-        val email = view.findViewById<TextView>(R.id.emailFrag)
         currentuser = mAuth.currentUser
         component = DaggerFactoryComponent.builder()
             .repositoryModule(RepositoryModule(view.context))
@@ -52,8 +50,7 @@ class Profile : Fragment() {
             .build() as DaggerFactoryComponent
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(MainViewModel::class.java)
-//        if (currentuser!=null)
-//        {emailFrag.text= currentuser!!.email}
+
         view.findViewById<Button>(R.id.btn_edit_profile_frag).setOnClickListener {
             viewModel.sendUsertoEditProfileActivity()
 
@@ -63,7 +60,7 @@ class Profile : Fragment() {
            viewModel.logout()
             Intent(context,LoginActivity::class.java).also {
                 startActivity(it)
-
+                activity!!.finish()
             }
 
         }
