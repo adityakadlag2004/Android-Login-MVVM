@@ -55,5 +55,10 @@
     <string name="zumba">Zumba</string>
     <string name="health">Health</string>
     <string name="netflix">Netflix</string>
-    <string name="amazon_prime">Amazon Prime</string>
+    <string name="amazon_prime">Prime</string>
+    <string name="hotstar">Hotstar</string>
+    <string name="other">Other</string>
+    <string name="education">Education</string>
+    <string name="tuition">Tuition</string>
+    <string name="jee_iit">JEE/IIT</string>
 </resources>
