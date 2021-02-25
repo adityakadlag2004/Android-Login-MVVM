@@ -75,6 +75,7 @@
             android:text="@string/sign_in"
             android:textColor="@color/white"
             android:onClick="@{()-> viewmodel.login()}"
+            android:fontFamily="@font/monmedium"
             android:layout_marginTop="60dp"
             android:background="@drawable/btn_circular"
             android:layout_marginStart="40dp"

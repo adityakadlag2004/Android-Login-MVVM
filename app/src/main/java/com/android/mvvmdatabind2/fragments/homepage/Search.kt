@@ -18,18 +18,7 @@ class Search : Fragment(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        cardGym.setOnClickListener(this)
-        cardYoga.setOnClickListener(this)
-        cardSwimming.setOnClickListener(this)
-        cardMeditation.setOnClickListener(this)
-        cardHealthClubs.setOnClickListener(this)
-        cardHotStar.setOnClickListener(this)
-        cardNetflix.setOnClickListener(this)
-        cardPrime.setOnClickListener(this)
-        cardZumba.setOnClickListener(this)
-        cardotherEntertainment.setOnClickListener(this)
-        cardTuition.setOnClickListener(this)
-        carjeeIIt.setOnClickListener(this)
+
 
     }
 
@@ -39,7 +28,18 @@ class Search : Fragment(), View.OnClickListener {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
-
+        view.cardGym.setOnClickListener(this)
+        view.cardYoga.setOnClickListener(this)
+        view.cardSwimming.setOnClickListener(this)
+        view.cardMeditation.setOnClickListener(this)
+        view.cardHealthClubs.setOnClickListener(this)
+        view.cardHotStar.setOnClickListener(this)
+        view.cardNetflix.setOnClickListener(this)
+        view.cardPrime.setOnClickListener(this)
+        view.cardZumba.setOnClickListener(this)
+        view.cardotherEntertainment.setOnClickListener(this)
+        view.cardTuition.setOnClickListener(this)
+        view.carjeeIIt.setOnClickListener(this)
         return view
     }
 
