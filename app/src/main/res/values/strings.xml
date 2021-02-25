@@ -43,4 +43,17 @@
     <string name="edit">Edit</string>
     <string name="inactive">Inactive</string>
     <string name="contact_number">Contact Number</string>
+    <string name="Gyms">Gyms</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="yoga">Yoga</string>
+    <string name="dance_studio">Dance Studio</string>
+    <string name="meditation">Meditation</string>
+    <string name="clubs">Clubs and Pubs</string>
+    <string name="library">Library</string>
+    <string name="health_clubs">Health Clubs</string>
+    <string name="swimming">Swimming</string>
+    <string name="zumba">Zumba</string>
+    <string name="health">Health</string>
+    <string name="netflix">Netflix</string>
+    <string name="amazon_prime">Amazon Prime</string>
 </resources>

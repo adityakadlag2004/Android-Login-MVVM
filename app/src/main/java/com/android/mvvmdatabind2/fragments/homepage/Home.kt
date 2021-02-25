@@ -31,8 +31,8 @@ class Home : Fragment() {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         currentuser = mAuth.currentUser
-        adapter= MembershipsAdapter(memList)
-        recyclerView_home.adapter=adapter
+//        adapter= MembershipsAdapter(memList)
+//        recyclerView_home.adapter=adapter
     }
 
     override fun onCreateView(

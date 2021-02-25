@@ -22,13 +22,9 @@ class UserDataRepo(var context: Context) : BaseRepository(context) {
     private var storageRef: StorageReference = storage.getReference(Constants.USERS)
     private var currentuser: FirebaseUser? = null
     var userMemberships =MutableLiveData<ArrayList<Membership>>()
-    var instance= UserDataRepo(context)
 
 
-    fun getRepoInstance() : UserDataRepo
-    {
-      return instance
-    }
+
 
 //    fun getUserMemberShips() :MutableLiveData<ArrayList<Membership>>
 //    {
