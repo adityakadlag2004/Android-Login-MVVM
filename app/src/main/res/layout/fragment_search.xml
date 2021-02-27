@@ -15,8 +15,10 @@
         <androidx.appcompat.widget.SearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="3dp"
             android:layout_margin="30dp"
-            android:id="@+id/searchView">
+            android:id="@+id/searchView"
+            tools:targetApi="lollipop">
 
         </androidx.appcompat.widget.SearchView>
         <TextView
@@ -338,6 +340,7 @@
             android:layout_width="170dp"
             android:layout_height="120dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_below="@id/relEdu1"
             app:cardElevation="2dp">

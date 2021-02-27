@@ -117,9 +117,9 @@
             android:text="@string/desc11"
             android:layout_below="@id/headTitle"
             android:layout_centerVertical="true"
+            android:textColor="@color/grey"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:textColor="@color/grey"
             android:gravity="center_horizontal" />
 
     </RelativeLayout>
