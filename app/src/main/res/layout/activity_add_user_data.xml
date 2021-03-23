@@ -21,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/change_photo"
+        android:fontFamily="@font/monmedium"
         android:layout_gravity="center"
         android:text="@string/change_profile_photo"
         android:textColor="@color/blue"
@@ -46,6 +47,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/monmedium"
             android:id="@+id/addName_data">
 
         </com.google.android.material.textfield.TextInputEditText>
@@ -69,6 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="@string/phone_number"
+        android:fontFamily="@font/monmedium"
         android:id="@+id/addPhone_data"
         android:inputType="phone"
         tools:ignore="LabelFor" />
@@ -89,6 +92,7 @@
         android:text="@string/continue2"
         android:textColor="@color/white"
         android:layout_marginTop="60dp"
+        android:fontFamily="@font/monmedium"
         android:background="@drawable/btn_circular"
         android:textAllCaps="false"
         android:layout_marginStart="50dp"

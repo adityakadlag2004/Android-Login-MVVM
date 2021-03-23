@@ -354,7 +354,14 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </com.google.android.material.card.MaterialCardView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/eduOther"/>
+
     </RelativeLayout>
+
 </ScrollView>
 
 

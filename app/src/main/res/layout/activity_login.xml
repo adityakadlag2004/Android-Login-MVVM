@@ -37,6 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/email_edit_log"
+            android:fontFamily="@font/monmedium"
+
             android:text="@={viewmodel.email}"
             >
 
@@ -63,6 +65,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/password_edit_log"
             android:text="@={viewmodel.password}"
+            android:fontFamily="@font/monmedium"
             android:autofillHints="@string/password"
             android:inputType="textPassword"
             tools:ignore="LabelFor" />
@@ -86,6 +89,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:id="@+id/txt_Log"
+            android:fontFamily="@font/monmedium"
             android:layout_gravity="center"
             android:text="@string/dont_have_an_account_sign_up"
             android:textSize="12sp"
