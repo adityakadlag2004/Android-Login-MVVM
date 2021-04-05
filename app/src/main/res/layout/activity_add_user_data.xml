@@ -72,6 +72,7 @@
         android:layout_height="wrap_content"
         android:autofillHints="@string/phone_number"
         android:fontFamily="@font/monmedium"
+        android:maxLength="10"
         android:id="@+id/addPhone_data"
         android:inputType="phone"
         tools:ignore="LabelFor" />
