@@ -25,14 +25,12 @@ class Home : Fragment() {
     lateinit var adapter:MembershipsAdapter
     private lateinit var component: DaggerFactoryComponent
     private var currentuser: FirebaseUser? = null
-    private var memList = ArrayList<Membership>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         currentuser = mAuth.currentUser
-//        adapter= MembershipsAdapter(memList)
-//        recyclerView_home.adapter=adapter
+
     }
 
     override fun onCreateView(
@@ -50,11 +48,7 @@ class Home : Fragment() {
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(UserDataViewModel::class.java)
 
-//        viewModel.getMemberships().observe(viewLifecycleOwner,{
-//        memList.clear()
-//        memList=it
-//        adapter.notifyDataSetChanged()
-//        })
+
 
         return view
     }

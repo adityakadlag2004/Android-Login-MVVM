@@ -33,7 +33,6 @@ class MembershipsAdapter(list:ArrayList<Membership>) : RecyclerView.Adapter<Memb
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        holder.image.setImageURI(membershipList[position].image.toUri())
         Picasso.get().load(membershipList[position].image.toUri()).noPlaceholder()
             .into(holder.image)
         holder.title.text = membershipList[position].title
