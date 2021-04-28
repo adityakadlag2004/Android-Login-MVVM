@@ -1,28 +1,39 @@
 package com.android.mvvmdatabind2.fragments.homepage
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmdatabind2.R
-import com.android.mvvmdatabind2.others.models.Membership
-import com.android.mvvmdatabind2.others.models.MembershipBusiness
-import kotlinx.android.synthetic.main.fragment_search.*
+import com.android.mvvmdatabind2.adapters.MembershipsAdapter
+import com.android.mvvmdatabind2.adapters.SearchAdapter
+import com.android.mvvmdatabind2.di.components.DaggerFactoryComponent
+import com.android.mvvmdatabind2.di.modules.FactoryModule
+import com.android.mvvmdatabind2.di.modules.RepositoryModule
+import com.android.mvvmdatabind2.mvvm.repository.UserDataRepo
+import com.android.mvvmdatabind2.mvvm.viewmodels.UserDataViewModel
+import com.android.mvvmdatabind2.others.models.SearchBusiness
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.fragment_search.view.*
 
 
-class Search : Fragment(), View.OnClickListener {
-
-    var memAdapter = ArrayList<MembershipBusiness>()
+class Search : Fragment() {
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var viewModel: UserDataViewModel
+    private lateinit var component: DaggerFactoryComponent
+    private var currentuser: FirebaseUser? = null
+    var memAdapter = ArrayList<SearchAdapter>()
+    val searchList=ArrayList<SearchBusiness>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        mAuth = FirebaseAuth.getInstance()
+        currentuser = mAuth.currentUser
     }
 
     override fun onCreateView(
@@ -31,18 +42,14 @@ class Search : Fragment(), View.OnClickListener {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
-        view.cardGym.setOnClickListener(this)
-        view.cardYoga.setOnClickListener(this)
-        view.cardSwimming.setOnClickListener(this)
-        view.cardMeditation.setOnClickListener(this)
-        view.cardHealthClubs.setOnClickListener(this)
-        view.cardHotStar.setOnClickListener(this)
-        view.cardNetflix.setOnClickListener(this)
-        view.cardPrime.setOnClickListener(this)
-        view.cardZumba.setOnClickListener(this)
-        view.cardotherEntertainment.setOnClickListener(this)
-        view.cardTuition.setOnClickListener(this)
-        view.carjeeIIt.setOnClickListener(this)
+        component = DaggerFactoryComponent.builder()
+            .repositoryModule(RepositoryModule(view.context))
+            .factoryModule(FactoryModule(UserDataRepo(view.context)))
+            .build() as DaggerFactoryComponent
+        viewModel = ViewModelProviders.of(this, component.getFactory())
+            .get(UserDataViewModel::class.java)
+
+
 
 
         view.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -60,35 +67,6 @@ class Search : Fragment(), View.OnClickListener {
         return view
     }
 
-    override fun onClick(v: View?) {
-        when (v!!.id) {
-            R.id.cardGym -> {
-            }
-            R.id.cardYoga -> {
-            }
-            R.id.cardSwimming -> {
-            }
-            R.id.cardMeditation -> {
-            }
-            R.id.cardHealthClubs -> {
-            }
-            R.id.cardHotStar -> {
-            }
-            R.id.cardNetflix -> {
-            }
-            R.id.cardPrime -> {
-            }
-            R.id.cardZumba -> {
-            }
-            R.id.cardotherEntertainment -> {
-            }
-            R.id.cardTuition -> {
-            }
-            R.id.carjeeIIt -> {
-            }
-        }
-
-    }
 
 
 }

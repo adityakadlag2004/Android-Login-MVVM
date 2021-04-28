@@ -20,10 +20,13 @@ object Constants {
 
     //Business Details
     const val BUSINESS_NAME="businessName"
+    const val BUSINESS_TYPE="businessType"
+    const val BUSINESS_WEBSITE="businessweb"
     const val BUSINESS_ADDRESS="businessAddress"
     const val BUSINESS_OWNER="businessOwner"
-    const val BUSINESS_DESC="businessDesc"
     const val BUSINESS_CONTACTNUMBER="OwnerPhone"
-    const val BUSINESS_PROFILE_IMAGE="businessProfileImage"
-    const val BUSINESS_BACKGROUND_IMAGE="backImage"
+    const val BUSINESS_STARTTIME="b_startTime"
+    const val BUSINESS_ENDTIME="b_endTime"
+    const val BUSINESS_STARTDAY="b_startDay"
+    const val BUSINESS_ENDDAY="b_endday"
 }

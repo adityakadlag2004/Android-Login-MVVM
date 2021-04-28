@@ -65,4 +65,7 @@
     <string name="tuition">Tuition</string>
     <string name="jee_iit">JEE/IIT</string>
     <string name="google">Google</string>
+    <string name="type">Type</string>
+    <string name="address">Address</string>
+    <string name="description">Description</string>
 </resources>

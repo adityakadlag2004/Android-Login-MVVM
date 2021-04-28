@@ -1,4 +1,4 @@
-package com.android.mvvmdatabind2.mvvm.factory
+package com.android.mvvmdatabind2.di.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
